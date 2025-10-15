@@ -273,7 +273,7 @@ const MenubarItem = ({
             if (newSelectedItem === selectedItem) handleToggleMenu(false);
             onSelectItem?.(newSelectedItem, e);
           }}
-          className="bg-surface flex h-full w-48 flex-col"
+          className="flex h-full w-48 flex-col bg-white dark:bg-dark-gray"
         />
       </div>
     </div>
@@ -329,7 +329,7 @@ const OverlayMenu = ({
         <Icon name="filter" />
       </Button>
       <div
-        className="z-modal fixed top-0 left-0 h-full w-full bg-[rgba(0,0,0,0.8)]"
+        className="z-modal fixed top-0 left-0 h-full w-full bg-black/80"
         style={menuTop ? { top: menuTop } : undefined}
         hidden={!menuOpen}
       >
@@ -354,7 +354,7 @@ const OverlayMenu = ({
             setMenuOpen(false);
             onSelectItem?.(newSelectedItem, e);
           }}
-          className="bg-surface fixed flex h-full w-80 max-w-[calc(100vw-(1.25em+2*var(--spacer-4)))] flex-col overflow-x-hidden overflow-y-auto"
+          className="fixed flex h-full w-80 max-w-[calc(100vw-3.25rem)] flex-col overflow-x-hidden overflow-y-auto bg-white dark:bg-dark-gray"
         />
       </div>
     </>
@@ -402,7 +402,7 @@ const ItemsList = ({
             setDisplayedItem(displayedItem.parent ?? initialMenuItem);
             e.preventDefault();
           }}
-          className="shrink-0 justify-normal gap-2 bg-[inherit]! p-4! whitespace-normal underline hover:bg-[rgb(var(--primary))]! hover:text-[rgb(var(--contrast-primary))]!"
+          className="shrink-0 justify-normal gap-2 bg-[inherit]! p-4! whitespace-normal underline hover:bg-black! hover:text-white! dark:hover:bg-gray! dark:hover:text-black!"
           role="menuitem"
         >
           <Icon name="outline-cheveron-left" />
@@ -414,7 +414,7 @@ const ItemsList = ({
         <a
           href={displayedItem.href}
           onClick={(e) => onSelectItem?.(displayedItem, e)}
-          className="shrink-0 justify-between gap-2 p-4! whitespace-normal underline hover:bg-[rgb(var(--primary))]! hover:text-[rgb(var(--contrast-primary))]!"
+          className="shrink-0 justify-between gap-2 p-4! whitespace-normal underline hover:bg-black! hover:text-white! dark:hover:bg-gray! dark:hover:text-black!"
           role="menuitem"
         >
           All {displayedItem.label}
@@ -433,7 +433,7 @@ const ItemsList = ({
             } else return onSelectItem?.(item, e);
           }}
           className={classNames(
-            "shrink-0 justify-between gap-2 overflow-visible! p-4! whitespace-normal! underline hover:bg-[rgb(var(--primary))]! hover:text-[rgb(var(--contrast-primary))]!",
+            "shrink-0 justify-between gap-2 overflow-visible! p-4! whitespace-normal! underline hover:bg-black! hover:text-white! dark:hover:bg-gray! dark:hover:text-black!",
             item.children.length && "flex! items-start! no-underline!",
           )}
           role="menuitem"
