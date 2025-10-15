@@ -348,7 +348,7 @@ const OverlayMenu = ({
             children: topLevelMenuItems,
             parent: null,
           }}
-          footer={footer ? <div className="shrink-0 border-b border-border p-4">{footer}</div> : undefined}
+          footer={footer ? <div className="shrink-0 border-b-1 border-white p-4">{footer}</div> : undefined}
           open={menuOpen}
           onSelectItem={(newSelectedItem, e) => {
             setMenuOpen(false);
