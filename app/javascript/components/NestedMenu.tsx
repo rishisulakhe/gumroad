@@ -409,7 +409,6 @@ const ItemsList = ({
   React.useEffect(() => setDisplayedItem(initialMenuItem), [open]);
 
   const isNestedView = displayedItem.key !== initialMenuItem.key;
-  const footerBorderColor = displayedItem.css?.backgroundColor ? "border-black" : "border-white";
 
   return (
     <div
@@ -419,7 +418,7 @@ const ItemsList = ({
       aria-label={displayedItem.label}
       className={classNames("overflow-hidden border-none! p-0! shadow-[unset]!", className)}
     >
-      {footer ? <div className={classNames("shrink-0 border-b-1 p-4", footerBorderColor)}>{footer}</div> : null}
+      {footer}
 
       {isNestedView ? (
         <MenuItemLink
