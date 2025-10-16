@@ -239,7 +239,7 @@ const MenubarItem = ({
 
   return menuItem.children.length > 0 ? (
     <div
-      className={classNames("popover", menuOpen && "expanded")}
+      className={classNames("popover", { expanded: menuOpen })}
       ref={ref}
       onMouseEnter={() => handleToggleMenu(true)}
       onMouseLeave={closeAfterDelay}
