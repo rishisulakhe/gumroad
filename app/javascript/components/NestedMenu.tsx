@@ -128,7 +128,7 @@ const Menubar = ({ moreLabel, ...extraAriaAttrs }: { moreLabel?: string | undefi
       role="menubar"
       aria-busy={itemsUnderMore === null}
       className={classNames(
-        "grid auto-cols-max grid-flow-col items-center",
+        "grid auto-cols-max grid-flow-col items-center aria-busy:overflow-x-hidden",
         itemsUnderMore === null && "overflow-x-hidden",
       )}
       {...extraAriaAttrs}
@@ -246,11 +246,10 @@ const MenubarItem = ({
     >
       <a
         href={menuItem.href ?? "#"}
-        className={classNames(
-          "pill button",
-          showExpandableIcon && "expandable",
-          !isHighlighted && "border-transparent bg-transparent text-inherit",
-        )}
+        className={classNames("pill button", {
+          expandable: showExpandableIcon,
+          "border-transparent! bg-transparent! text-inherit!": !isHighlighted,
+        })}
         role="menuitem"
         aria-current={isHighlighted}
         aria-haspopup="menu"
@@ -281,11 +280,10 @@ const MenubarItem = ({
     <div onMouseEnter={() => handleToggleMenu(true)} onMouseLeave={() => handleToggleMenu(false)}>
       <a
         href={menuItem.href ?? "#"}
-        className={classNames(
-          "pill button",
-          showExpandableIcon && "expandable",
-          !isHighlighted && "border-transparent bg-transparent text-inherit",
-        )}
+        className={classNames("pill button", {
+          expandable: showExpandableIcon,
+          "border-transparent! bg-transparent! text-inherit!": !isHighlighted,
+        })}
         role="menuitem"
         aria-current={isHighlighted}
         {...extraAriaAttrs}
@@ -348,7 +346,7 @@ const OverlayMenu = ({
             children: topLevelMenuItems,
             parent: null,
           }}
-          footer={footer ? <div className="shrink-0 border-b-1 border-white p-4">{footer}</div> : undefined}
+          footer={footer}
           open={menuOpen}
           onSelectItem={(newSelectedItem, e) => {
             setMenuOpen(false);
@@ -360,6 +358,35 @@ const OverlayMenu = ({
     </>
   );
 };
+
+const MenuItemLink = ({
+  href,
+  onClick,
+  justify = "between",
+  className,
+  children,
+  ...props
+}: {
+  href?: string | undefined;
+  onClick?: ((e: React.MouseEvent<HTMLAnchorElement>) => void) | undefined;
+  justify?: "normal" | "between" | undefined;
+  className?: string | undefined;
+  children: React.ReactNode;
+} & React.AriaAttributes) => (
+  <a
+    href={href ?? "#"}
+    onClick={onClick}
+    className={classNames(
+      "shrink-0 gap-2 overflow-visible! p-4! whitespace-normal! underline hover:bg-black! hover:text-white! dark:hover:bg-gray! dark:hover:text-black!",
+      justify === "normal" ? "justify-normal" : "justify-between",
+      className,
+    )}
+    role="menuitem"
+    {...props}
+  >
+    {children}
+  </a>
+);
 
 const ItemsList = ({
   menuId,
@@ -382,6 +409,7 @@ const ItemsList = ({
   React.useEffect(() => setDisplayedItem(initialMenuItem), [open]);
 
   const isNestedView = displayedItem.key !== initialMenuItem.key;
+  const footerBorderColor = displayedItem.css?.backgroundColor ? "border-black" : "border-white";
 
   return (
     <div
@@ -391,38 +419,33 @@ const ItemsList = ({
       aria-label={displayedItem.label}
       className={classNames("overflow-hidden border-none! p-0! shadow-[unset]!", className)}
     >
-      {footer}
+      {footer ? <div className={classNames("shrink-0 border-b-1 p-4", footerBorderColor)}>{footer}</div> : null}
 
       {isNestedView ? (
-        <a
+        <MenuItemLink
           key={`back${displayedItem.key}`}
-          href={displayedItem.parent?.href ?? "#"}
+          href={displayedItem.parent?.href}
           onClick={(e) => {
             if (e.ctrlKey || e.shiftKey) return;
             setDisplayedItem(displayedItem.parent ?? initialMenuItem);
             e.preventDefault();
           }}
-          className="shrink-0 justify-normal gap-2 bg-[inherit]! p-4! whitespace-normal underline hover:bg-black! hover:text-white! dark:hover:bg-gray! dark:hover:text-black!"
-          role="menuitem"
+          justify="normal"
+          className="bg-[inherit]!"
         >
           <Icon name="outline-cheveron-left" />
           <span>Back</span>
-        </a>
+        </MenuItemLink>
       ) : null}
 
       {isNestedView || showAllItemOnInitialList ? (
-        <a
-          href={displayedItem.href}
-          onClick={(e) => onSelectItem?.(displayedItem, e)}
-          className="shrink-0 justify-between gap-2 p-4! whitespace-normal underline hover:bg-black! hover:text-white! dark:hover:bg-gray! dark:hover:text-black!"
-          role="menuitem"
-        >
+        <MenuItemLink href={displayedItem.href} onClick={(e) => onSelectItem?.(displayedItem, e)}>
           All {displayedItem.label}
-        </a>
+        </MenuItemLink>
       ) : null}
 
       {displayedItem.children.map((item) => (
-        <a
+        <MenuItemLink
           key={item.key}
           href={item.href}
           onClick={(e) => {
@@ -432,16 +455,12 @@ const ItemsList = ({
               setDisplayedItem(item);
             } else return onSelectItem?.(item, e);
           }}
-          className={classNames(
-            "shrink-0 justify-between gap-2 overflow-visible! p-4! whitespace-normal! underline hover:bg-black! hover:text-white! dark:hover:bg-gray! dark:hover:text-black!",
-            item.children.length && "flex! items-start! no-underline!",
-          )}
-          role="menuitem"
+          className={item.children.length ? "flex! items-start! no-underline!" : undefined}
           aria-haspopup={item.children.length ? "menu" : undefined}
         >
           <span className="min-w-0 flex-1 overflow-visible! break-words">{item.label}</span>
           {item.children.length > 0 && <Icon name="outline-cheveron-right" className="shrink-0" />}
-        </a>
+        </MenuItemLink>
       ))}
 
       {displayedItem.image ? <img src={displayedItem.image} className="w-full translate-x-6 translate-y-6" /> : null}
