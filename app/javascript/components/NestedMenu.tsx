@@ -246,9 +246,8 @@ const MenubarItem = ({
     >
       <a
         href={menuItem.href ?? "#"}
-        className={classNames("pill button", {
+        className={classNames("button", isHighlighted ? "pill" : "border-transparent! bg-transparent! text-inherit!", {
           expandable: showExpandableIcon,
-          "border-transparent! bg-transparent! text-inherit!": !isHighlighted,
         })}
         role="menuitem"
         aria-current={isHighlighted}
@@ -280,9 +279,8 @@ const MenubarItem = ({
     <div onMouseEnter={() => handleToggleMenu(true)} onMouseLeave={() => handleToggleMenu(false)}>
       <a
         href={menuItem.href ?? "#"}
-        className={classNames("pill button", {
+        className={classNames("button", isHighlighted ? "pill" : "border-transparent! bg-transparent! text-inherit!", {
           expandable: showExpandableIcon,
-          "border-transparent! bg-transparent! text-inherit!": !isHighlighted,
         })}
         role="menuitem"
         aria-current={isHighlighted}
