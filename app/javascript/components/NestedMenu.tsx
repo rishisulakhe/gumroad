@@ -362,14 +362,12 @@ const OverlayMenu = ({
 const MenuItemLink = ({
   href,
   onClick,
-  justify = "between",
   className,
   children,
   ...props
 }: {
   href?: string | undefined;
   onClick?: ((e: React.MouseEvent<HTMLAnchorElement>) => void) | undefined;
-  justify?: "normal" | "between" | undefined;
   className?: string | undefined;
   children: React.ReactNode;
 } & React.AriaAttributes) => (
@@ -377,8 +375,7 @@ const MenuItemLink = ({
     href={href ?? "#"}
     onClick={onClick}
     className={classNames(
-      "shrink-0 gap-2 overflow-visible! p-4! whitespace-normal! underline hover:bg-black! hover:text-white! dark:hover:bg-gray! dark:hover:text-black!",
-      justify === "normal" ? "justify-normal" : "justify-between",
+      "shrink-0 justify-between gap-2 overflow-visible! p-4! whitespace-normal! underline hover:bg-black! hover:text-white! dark:hover:bg-gray! dark:hover:text-black!",
       className,
     )}
     role="menuitem"
@@ -429,8 +426,7 @@ const ItemsList = ({
             setDisplayedItem(displayedItem.parent ?? initialMenuItem);
             e.preventDefault();
           }}
-          justify="normal"
-          className="bg-[inherit]!"
+          className="justify-normal bg-[inherit]!"
         >
           <Icon name="outline-cheveron-left" />
           <span>Back</span>
