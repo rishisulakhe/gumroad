@@ -127,10 +127,7 @@ const Menubar = ({ moreLabel, ...extraAriaAttrs }: { moreLabel?: string | undefi
       ref={parentRef}
       role="menubar"
       aria-busy={itemsUnderMore === null}
-      className={classNames(
-        "grid auto-cols-max grid-flow-col items-center aria-busy:overflow-x-hidden",
-        itemsUnderMore === null && "overflow-x-hidden",
-      )}
+      className={classNames("grid auto-cols-max grid-flow-col items-center aria-busy:overflow-x-hidden")}
       {...extraAriaAttrs}
     >
       {menubarItems.map((menuItem) => (
