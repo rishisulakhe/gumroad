@@ -4,6 +4,7 @@ import { createCast } from "ts-safe-cast";
 import { register } from "$app/utils/serverComponentUtil";
 
 import { Button } from "$app/components/Button";
+import { Input } from "$app/components/Input";
 import { showAlert } from "$app/components/server-components/Alert";
 
 type SecureRedirectPageProps = {
@@ -94,7 +95,7 @@ const SecureRedirectPage = ({
         <label htmlFor="confirmation_text" className="form-label">
           {field_name}
         </label>
-        <input
+        <Input
           id="confirmation_text"
           name="confirmation_text"
           type="text"

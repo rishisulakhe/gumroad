@@ -19,6 +19,7 @@ import { assertResponseError, request, ResponseError } from "$app/utils/request"
 import { generatePageIcon } from "$app/utils/rich_content_page";
 
 import { Button } from "$app/components/Button";
+import { Checkbox } from "$app/components/Checkbox";
 import { InputtedDiscount } from "$app/components/CheckoutDashboard/DiscountInput";
 import { ComboBox } from "$app/components/ComboBox";
 import { PageList, PageListLayout, PageListItem } from "$app/components/Download/PageListLayout";
@@ -1094,8 +1095,7 @@ export const ContentTab = () => {
                         {index === product.variants.length - 1 ? (
                           <div className="option">
                             <label style={{ alignItems: "center" }}>
-                              <input
-                                type="checkbox"
+                              <Checkbox
                                 checked={product.has_same_rich_content_for_all_variants}
                                 onChange={() => {
                                   if (!product.has_same_rich_content_for_all_variants && product.variants.length > 1)

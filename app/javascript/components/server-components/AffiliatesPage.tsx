@@ -66,6 +66,7 @@ import { Sort, useClientSortingTableDriver, useSortingTableDriver } from "$app/c
 import { WithTooltip } from "$app/components/WithTooltip";
 
 import placeholder from "$assets/images/placeholders/affiliated.png";
+import { Switch } from "$app/components/Forms";
 
 type LayoutProps = {
   title: string;
@@ -844,10 +845,8 @@ const Form = ({ title, headerLabel, submitLabel }: FormProps) => {
             <TableBody>
               <TableRow>
                 <TableCell>
-                  <input
+                  <Switch
                     id={`${uid}enableAllProducts`}
-                    type="checkbox"
-                    role="switch"
                     checked={affiliateState.apply_to_all_products}
                     onChange={(evt) => toggleAllProducts(evt.target.checked)}
                     aria-label="Enable all products"

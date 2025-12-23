@@ -5,8 +5,10 @@ import { CurrencyCode } from "$app/utils/currency";
 
 import { NumberInput } from "$app/components/NumberInput";
 import { PriceInput } from "$app/components/PriceInput";
+import { Radio } from "$app/components/Radio";
 import { Pill } from "$app/components/ui/Pill";
 import { WithTooltip } from "$app/components/WithTooltip";
+import { Label } from "$app/components/ui/Label";
 
 export type InputtedDiscount = { type: "percent" | "cents"; value: null | number; error?: boolean };
 
@@ -28,10 +30,9 @@ export const DiscountInput = ({
   const fixedAmountFieldset = (
     <fieldset className={cx({ danger: discount.type === "cents" && discount.error })}>
       <div className="grid items-center gap-4 md:grid-cols-[auto_1fr]!">
-        <label>
-          <input
+        <Label>
+          <Radio
             ref={ref}
-            type="radio"
             checked={discount.type === "cents"}
             onChange={(evt) => {
               if (evt.target.checked) setDiscount({ type: "cents", value: 0 });
@@ -39,7 +40,7 @@ export const DiscountInput = ({
             disabled={disableFixedAmount}
           />
           Fixed amount
-        </label>
+        </Label>
         <PriceInput
           currencyCode={currencyCode}
           currencyCodeSelector={currencyCodeSelector}
@@ -63,16 +64,15 @@ export const DiscountInput = ({
     >
       <fieldset className={cx({ danger: discount.type === "percent" && discount.error })}>
         <div className="grid items-center gap-4 md:grid-cols-[auto_1fr]!">
-          <label>
-            <input
-              type="radio"
+          <Label>
+            <Radio
               checked={discount.type === "percent"}
               onChange={(evt) => {
                 if (evt.target.checked) setDiscount({ type: "percent", value: 0 });
               }}
             />
             Percentage
-          </label>
+          </Label>
           <div className={cx("input", { disabled: discount.type !== "percent" })}>
             <NumberInput
               value={discount.type === "percent" ? discount.value : null}

@@ -4,6 +4,7 @@ import { formatPriceCentsWithCurrencySymbol } from "$app/utils/currency";
 
 import { Form } from "$app/components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
+import { Label } from "$app/components/ui/Label";
 
 export const AdminManualPayoutForm = ({
   user_id,
@@ -49,7 +50,7 @@ export const AdminManualPayoutForm = ({
         {paypal ? (
           <div>
             {unpaid_balance_up_to_date > paypal.split_payment_by_cents && (
-              <label>
+              <Label>
                 <input
                   type="checkbox"
                   name="payday[should_split_the_amount]"
@@ -57,7 +58,7 @@ export const AdminManualPayoutForm = ({
                   className="small"
                 />
                 Break up into {paypal.split_payment_by_cents} chunks?
-              </label>
+              </Label>
             )}
           </div>
         ) : null}

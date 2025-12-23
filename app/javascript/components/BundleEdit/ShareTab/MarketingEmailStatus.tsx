@@ -6,6 +6,7 @@ import { paramsToQueryString } from "$app/utils/url";
 import { computeStandalonePrice, useBundleEditContext } from "$app/components/BundleEdit/state";
 import { NavigationButton } from "$app/components/Button";
 import { newEmailPath } from "$app/components/server-components/EmailsPage";
+import { Label } from "$app/components/ui/Label";
 
 export const MarketingEmailStatus = () => {
   const { bundle, uniquePermalink, currencyType } = useBundleEditContext();
@@ -34,22 +35,22 @@ export const MarketingEmailStatus = () => {
           Your product bundle is ready. Would you like to send an email about this offer to existing customers?
         </strong>
         <fieldset>
-          <label>
+          <Label>
             <input
               type="radio"
               checked={!sendToAllCustomers}
               onChange={(evt) => setSendToAllCustomers(!evt.target.checked)}
             />
             Customers who have purchased at least one product in the bundle
-          </label>
-          <label>
+          </Label>
+          <Label>
             <input
               type="radio"
               checked={sendToAllCustomers}
               onChange={(evt) => setSendToAllCustomers(evt.target.checked)}
             />
             All customers
-          </label>
+          </Label>
         </fieldset>
         <NavigationButton color="primary" href={`${newEmailPath}?${paramsToQueryString(queryParams)}`} target="_blank">
           Draft and send

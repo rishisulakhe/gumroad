@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react"
 import { lookupCharges, lookupPaypalCharges } from "$app/data/charge"
 import { assertResponseError } from "$app/utils/request"
 
+import { Input } from "$app/components/Input"
 import { showAlert } from "$app/components/server-components/Alert"
 import { PageHeader } from "$app/components/ui/PageHeader"
 
@@ -121,7 +122,7 @@ const LookupLayout = ({ children, title, type }: {
             </header>
             <fieldset className={cx({ danger: email.error })}>
               <label htmlFor="email">What email address did you use?</label>
-              <input
+              <Input
                 id="email"
                 className="required"
                 placeholder="Email address"
@@ -133,7 +134,7 @@ const LookupLayout = ({ children, title, type }: {
             {type === "charge" && (
               <fieldset className={cx({ danger: last4.error })}>
                 <label htmlFor="cc_last_four">Last 4 digits of your card</label>
-                <input
+                <Input
                   id="cc_last_four"
                   className="required"
                   maxLength={4}
@@ -164,7 +165,7 @@ const LookupLayout = ({ children, title, type }: {
             </header>
             <fieldset className={cx({ danger: invoiceId.error })}>
               <label htmlFor="invoice_id">PayPal Invoice ID</label>
-              <input
+              <Input
                 id="invoice_id"
                 className="required"
                 placeholder="XXXXXXXXXXXX"

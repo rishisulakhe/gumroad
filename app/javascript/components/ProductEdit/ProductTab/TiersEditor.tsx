@@ -26,6 +26,7 @@ import { RecurrencePriceValue, Tier, useProductEditContext } from "$app/componen
 import { RichTextEditor } from "$app/components/RichTextEditor";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Drawer, ReorderingHandle, SortableList } from "$app/components/SortableList";
+import { Switch, Textarea } from "$app/components/Forms";
 import { Toggle } from "$app/components/Toggle";
 import Placeholder from "$app/components/ui/Placeholder";
 import { Row, RowActions, RowContent, RowDetails, Rows } from "$app/components/ui/Rows";
@@ -232,7 +233,7 @@ const TierEditor = ({
             </fieldset>
             <fieldset>
               <label htmlFor={`${uid}-description`}>Description</label>
-              <textarea
+              <Textarea
                 id={`${uid}-description`}
                 value={tier.description}
                 onChange={(evt) => updateTier({ description: evt.target.value })}
@@ -267,9 +268,7 @@ const TierEditor = ({
                   }}
                   key={recurrence}
                 >
-                  <input
-                    type="checkbox"
-                    role="switch"
+                  <Switch
                     checked={value.enabled}
                     aria-label={`Toggle recurrence option: ${recurrenceNames[recurrence]}`}
                     onChange={() => updateRecurrencePriceValue(recurrence, { enabled: !value.enabled })}

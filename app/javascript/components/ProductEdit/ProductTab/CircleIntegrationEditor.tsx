@@ -4,6 +4,7 @@ import { CircleCommunity, CircleSpaceGroup, fetchCommunities, fetchSpaceGroups }
 import { assertResponseError } from "$app/utils/request";
 
 import { Button } from "$app/components/Button";
+import { Checkbox } from "$app/components/Checkbox";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { useProductEditContext } from "$app/components/ProductEdit/state";
 import { showAlert } from "$app/components/server-components/Alert";
@@ -199,8 +200,7 @@ export const CircleIntegrationEditor = ({
                 </fieldset>
                 {product.native_type === "membership" && integration ? (
                   <label>
-                    <input
-                      type="checkbox"
+                    <Checkbox
                       checked={integration.keep_inactive_members}
                       onChange={() =>
                         onChange({ ...integration, keep_inactive_members: !integration.keep_inactive_members })

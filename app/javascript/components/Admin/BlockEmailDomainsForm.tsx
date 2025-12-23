@@ -2,6 +2,7 @@ import { useForm, usePage } from "@inertiajs/react";
 import React from "react";
 
 import CodeSnippet from "$app/components/ui/CodeSnippet";
+import { Textarea } from "$app/components/Forms";
 
 export type Props = {
   action: string;
@@ -53,7 +54,7 @@ const Form = ({ action, header, buttonLabel }: Props) => {
           list.example.org
         </CodeSnippet>
 
-        <textarea
+        <Textarea
           id="identifiers"
           name="email_domains[identifiers]"
           placeholder="Enter email domains here"

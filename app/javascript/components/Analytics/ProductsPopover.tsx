@@ -4,6 +4,7 @@ import { type Product } from "$app/components/Analytics";
 import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { Popover } from "$app/components/Popover";
+import { Label } from "$app/components/ui/Label";
 
 export type ProductOption = Product & { selected: boolean };
 
@@ -25,7 +26,7 @@ export const ProductsPopover = ({
     <div className="stack">
       <div>
         <fieldset>
-          <label>
+          <Label>
             <input
               type="checkbox"
               checked={products.filter((product) => product.selected).length === products.length}
@@ -36,9 +37,9 @@ export const ProductsPopover = ({
               }
             />
             All products
-          </label>
+          </Label>
           {products.map(({ id, name, unique_permalink, selected }) => (
-            <label key={id}>
+            <Label key={id}>
               <input
                 type="checkbox"
                 checked={selected}
@@ -53,7 +54,7 @@ export const ProductsPopover = ({
                 }
               />
               {name}
-            </label>
+            </Label>
           ))}
         </fieldset>
       </div>

@@ -36,6 +36,7 @@ import { VersionsEditor } from "$app/components/ProductEdit/ProductTab/VersionsE
 import { RefundPolicySelector } from "$app/components/ProductEdit/RefundPolicy";
 import { useProductEditContext } from "$app/components/ProductEdit/state";
 import { ToggleSettingRow } from "$app/components/SettingRow";
+import { Textarea } from "$app/components/Forms";
 import { Toggle } from "$app/components/Toggle";
 import { TypeSafeOptionSelect } from "$app/components/TypeSafeOptionSelect";
 
@@ -116,7 +117,7 @@ export const ProductTab = () => {
               <>
                 <fieldset>
                   <label htmlFor={`${uid}-body`}>Body</label>
-                  <textarea
+                  <Textarea
                     id={`${uid}-body`}
                     value={product.description}
                     placeholder="Add a short inspiring message"

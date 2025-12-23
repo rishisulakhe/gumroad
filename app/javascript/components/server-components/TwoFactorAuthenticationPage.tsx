@@ -7,6 +7,7 @@ import { register } from "$app/utils/serverComponentUtil";
 
 import { Layout } from "$app/components/Authentication/Layout";
 import { Button } from "$app/components/Button";
+import { Input } from "$app/components/Input";
 import { showAlert } from "$app/components/server-components/Alert";
 import { useOriginalLocation } from "$app/components/useOriginalLocation";
 
@@ -73,7 +74,7 @@ export const TwoFactorAuthenticationPage = ({
             <legend>
               <label htmlFor={uid}>Authentication Token</label>
             </legend>
-            <input id={uid} type="text" value={token} onChange={(e) => setToken(e.target.value)} required autoFocus />
+            <Input id={uid} type="text" value={token} onChange={(e) => setToken(e.target.value)} required autoFocus />
           </fieldset>
           <Button color="primary" type="submit" disabled={loginState.type === "submitting"}>
             {loginState.type === "submitting" ? "Logging in..." : "Login"}

@@ -4,6 +4,7 @@ import { updateWishlist } from "$app/data/wishlists";
 import { assertResponseError } from "$app/utils/request";
 
 import { Icon } from "$app/components/Icons";
+import { Input } from "$app/components/Input";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Sheet, SheetHeader } from "$app/components/ui/Sheet";
 
@@ -54,7 +55,7 @@ export const WishlistEditor = ({
 
       <fieldset>
         <label htmlFor={`${uid}-name`}>Name</label>
-        <input
+        <Input
           id={`${uid}-name`}
           type="text"
           value={newName}
@@ -64,7 +65,7 @@ export const WishlistEditor = ({
       </fieldset>
       <fieldset>
         <label htmlFor={`${uid}-description`}>Description</label>
-        <input
+        <Input
           id={`${uid}-description`}
           type="text"
           value={newDescription}

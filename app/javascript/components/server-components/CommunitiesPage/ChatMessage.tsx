@@ -17,6 +17,7 @@ import { WithTooltip } from "$app/components/WithTooltip";
 
 import { CommunityViewContext, MAX_MESSAGE_LENGTH, MIN_MESSAGE_LENGTH } from "./CommunityView";
 import { UserAvatar } from "./UserAvatar";
+import { Textarea } from "$app/components/Forms";
 
 const MAX_TEXTAREA_HEIGHT = 300;
 
@@ -293,7 +294,7 @@ const MessageEditor = ({ content: initialContent, isSaving, onCancel, onSave }: 
 
   return (
     <div className="relative overflow-hidden rounded-md border focus-within:outline-[0.125rem] focus-within:outline-[rgb(var(--accent))] focus-within:outline-solid dark:border-[rgb(var(--parent-color)/var(--border-alpha))]">
-      <textarea
+      <Textarea
         ref={textareaRef}
         placeholder="Edit message"
         className="max-h-[300px] min-h-[80px] w-full resize-none overflow-y-auto border-none p-2 pb-14 text-sm outline-hidden"

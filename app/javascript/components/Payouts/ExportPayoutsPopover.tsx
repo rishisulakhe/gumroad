@@ -10,6 +10,7 @@ import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { Popover } from "$app/components/Popover";
 import { showAlert } from "$app/components/server-components/Alert";
 import { useRunOnce } from "$app/components/useRunOnce";
+import { Label } from "$app/components/ui/Label";
 
 const ExportPayoutsPopoverContent = ({ closePopover }: { closePopover: () => void }) => {
   const currentYear = new Date().getFullYear();
@@ -111,7 +112,7 @@ const ExportPayoutsPopoverContent = ({ closePopover }: { closePopover: () => voi
             <p>No payouts found for this year.</p>
           ) : (
             payouts.map((payout) => (
-              <label key={payout.id} className="flex items-center gap-2">
+              <Label key={payout.id} className="flex items-center gap-2">
                 <input
                   type="checkbox"
                   checked={selectedPayouts.has(payout.id)}
@@ -119,7 +120,7 @@ const ExportPayoutsPopoverContent = ({ closePopover }: { closePopover: () => voi
                   disabled={isLoading || isDownloading}
                 />
                 {payout.date_formatted}
-              </label>
+              </Label>
             ))
           )}
         </div>

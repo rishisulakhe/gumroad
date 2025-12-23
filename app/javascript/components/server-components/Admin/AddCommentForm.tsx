@@ -5,6 +5,7 @@ import { register } from "$app/utils/serverComponentUtil";
 
 import { Form } from "$app/components/server-components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
+import { Textarea } from "$app/components/Forms";
 
 export const AdminAddCommentForm = ({
   commentable_id,
@@ -22,7 +23,7 @@ export const AdminAddCommentForm = ({
     {(isLoading) => (
       <fieldset>
         <div className="input-with-button">
-          <textarea name="comment[content]" rows={1} placeholder={`Comment on this ${commentable_type}`} required />
+          <Textarea name="comment[content]" rows={1} placeholder={`Comment on this ${commentable_type}`} required />
           <input type="hidden" name="comment[commentable_id]" value={commentable_id} />
           <input type="hidden" name="comment[commentable_type]" value={commentable_type} />
           <input type="hidden" name="comment[comment_type]" value="note" />

@@ -21,6 +21,7 @@ import { asyncVoid } from "$app/utils/promise";
 import { AbortError, assertResponseError } from "$app/utils/request";
 
 import { Button } from "$app/components/Button";
+import { Checkbox, Radio, Switch } from "$app/components/Forms";
 import { ProductToAdd, CartItem } from "$app/components/Checkout/cartState";
 import { CheckoutPreview } from "$app/components/CheckoutDashboard/CheckoutPreview";
 import { DiscountInput, InputtedDiscount } from "$app/components/CheckoutDashboard/DiscountInput";
@@ -34,6 +35,7 @@ import { Popover } from "$app/components/Popover";
 import { WithPreviewSidebar } from "$app/components/PreviewSidebar";
 import { applySelection } from "$app/components/Product/ConfigurationSelector";
 import { Select } from "$app/components/Select";
+import { Textarea } from "$app/components/Forms";
 import { showAlert } from "$app/components/server-components/Alert";
 import { CrossSellModal, UpsellModal } from "$app/components/server-components/CheckoutPage";
 import { Skeleton } from "$app/components/Skeleton";
@@ -45,6 +47,7 @@ import { useDebouncedCallback } from "$app/components/useDebouncedCallback";
 import { Sort, useSortingTableDriver } from "$app/components/useSortingTableDriver";
 
 import placeholder from "$assets/images/placeholders/upsells.png";
+import { Label } from "$app/components/ui/Label";
 
 type Variant = {
   id: string;
@@ -703,7 +706,7 @@ const Form = ({
             </p>
             <fieldset className={cx({ danger: name.error })}>
               <legend>
-                <label htmlFor={`${uid}name`}>Name</label>
+                <Label htmlFor={`${uid}name`}>Name</Label>
               </legend>
               <input
                 type="text"
@@ -716,7 +719,7 @@ const Form = ({
             </fieldset>
             <fieldset className={cx({ danger: offerText.error })}>
               <legend>
-                <label htmlFor={`${uid}offerText`}>Offer text</label>
+                <Label htmlFor={`${uid}offerText`}>Offer text</Label>
               </legend>
               <input
                 type="text"
@@ -729,9 +732,9 @@ const Form = ({
             </fieldset>
             <fieldset>
               <legend>
-                <label htmlFor={`${uid}offerDescription`}>Offer description</label>
+                <Label htmlFor={`${uid}offerDescription`}>Offer description</Label>
               </legend>
-              <textarea
+              <Textarea
                 id={`${uid}offerDescription`}
                 placeholder="You'll enjoy a range of exclusive features, including..."
                 value={offerDescription}
@@ -740,29 +743,28 @@ const Form = ({
             </fieldset>
             <fieldset>
               <legend>Status</legend>
-              <label>
-                <input type="radio" name="paused" value="false" checked={!paused} onChange={handlePausedChange} />
+              <Label>
+                <Radio  name="paused" value="false" checked={!paused} onChange={handlePausedChange} />
                 Live
-              </label>
-              <label>
+              </Label>
+              <Label>
                 <input type="radio" name="paused" value="true" checked={paused} onChange={handlePausedChange} />
                 Paused
-              </label>
+              </Label>
               <small>Paused upsells will not appear at checkout. You can resume anytime.</small>
             </fieldset>
             <fieldset>
               <legend>Type of offer</legend>
-              <label>
-                <input
-                  type="radio"
+              <Label>
+                <Radio
                   checked={type === "cross-sell"}
                   onChange={(evt) => {
                     if (evt.target.checked) setType("cross-sell");
                   }}
                 />
                 Add another product to the cart
-              </label>
-              <label>
+              </Label>
+              <Label>
                 <input
                   type="radio"
                   checked={type === "replacement-cross-sell"}
@@ -771,8 +773,8 @@ const Form = ({
                   }}
                 />
                 Replace the selected products with another product
-              </label>
-              <label>
+              </Label>
+              <Label>
                 <input
                   type="radio"
                   checked={type === "upsell"}
@@ -781,13 +783,13 @@ const Form = ({
                   }}
                 />
                 Replace the version selected with another version of the same product
-              </label>
+              </Label>
             </fieldset>
             {isCrossSell ? (
               <>
                 <fieldset className={cx({ danger: selectedProductIds.error })}>
                   <legend>
-                    <label htmlFor={`${uid}selectedProducts`}>Apply to these products</label>
+                    <Label htmlFor={`${uid}selectedProducts`}>Apply to these products</Label>
                   </legend>
                   <Select
                     inputId={`${uid}selectedProducts`}
@@ -804,14 +806,14 @@ const Form = ({
                     isClearable
                     aria-invalid={selectedProductIds.error}
                   />
-                  <label>
-                    <input type="checkbox" checked={universal} onChange={(evt) => setUniversal(evt.target.checked)} />
+                  <Label>
+                    <Checkbox checked={universal} onChange={(evt) => setUniversal(evt.target.checked)} />
                     All products
-                  </label>
+                  </Label>
                 </fieldset>
                 <fieldset className={cx({ danger: offeredProductId.error })}>
                   <legend>
-                    <label htmlFor={`${uid}offeredProduct`}>Product to offer</label>
+                    <Label htmlFor={`${uid}offeredProduct`}>Product to offer</Label>
                   </legend>
                   <Select
                     inputId={`${uid}offeredProduct`}
@@ -830,7 +832,7 @@ const Form = ({
                 {offeredProduct && offeredProduct.options.length > 0 ? (
                   <fieldset className={cx({ danger: offeredVariantId.error })}>
                     <legend>
-                      <label htmlFor={`${uid}offeredVariant`}>Version to offer</label>
+                      <Label htmlFor={`${uid}offeredVariant`}>Version to offer</Label>
                     </legend>
                     <Select
                       inputId={`${uid}offeredVariant`}
@@ -850,15 +852,13 @@ const Form = ({
                     className="toggle"
                     open={!!discount}
                     summary={
-                      <label>
-                        <input
-                          type="checkbox"
-                          role="switch"
+                      <Label>
+                        <Switch
                           checked={!!discount}
                           onChange={(evt) => setDiscount(evt.target.checked ? { type: "percent", value: 0 } : null)}
                         />
                         Add discount to the offered product
-                      </label>
+                      </Label>
                     }
                   >
                     {discount ? (
@@ -873,7 +873,7 @@ const Form = ({
               <>
                 <fieldset className={cx({ danger: selectedProductId.error })}>
                   <legend>
-                    <label htmlFor={`${uid}selectedProduct`}>Apply to this product</label>
+                    <Label htmlFor={`${uid}selectedProduct`}>Apply to this product</Label>
                   </legend>
                   <Select
                     inputId={`${uid}selectedProduct`}

@@ -17,6 +17,7 @@ import { useDebouncedCallback } from "$app/components/useDebouncedCallback";
 import { useOnChange } from "$app/components/useOnChange";
 
 import { Card } from "./Card";
+import { Label } from "$app/components/ui/Label";
 
 export const SORT_BY_LABELS = {
   default: "Default",
@@ -126,7 +127,7 @@ const FilterCheckboxes = ({
   return (
     <>
       {(showingAll ? filters : filters.slice(0, 5)).map((option) => (
-        <label key={option.key}>
+        <Label key={option.key}>
           {option.key} ({option.doc_count})
           <input
             type="checkbox"
@@ -140,7 +141,7 @@ const FilterCheckboxes = ({
               )
             }
           />
-        </label>
+        </Label>
       ))}
       {filters.length > 5 && !showingAll ? (
         <button className="underline" onClick={() => setShowingAll(true)}>
@@ -250,7 +251,7 @@ export const CardGrid = ({
               <summary>Sort by</summary>
               <fieldset role="group">
                 {(onProfile ? PROFILE_SORT_KEYS : SORT_KEYS).map((key) => (
-                  <label key={key}>
+                  <Label key={key}>
                     {SORT_BY_LABELS[key]}
                     <input
                       type="radio"
@@ -259,7 +260,7 @@ export const CardGrid = ({
                       checked={(searchParams.sort ?? defaults.sort) === key}
                       onChange={() => updateParams({ sort: key })}
                     />
-                  </label>
+                  </Label>
                 ))}
               </fieldset>
             </details>
@@ -268,7 +269,7 @@ export const CardGrid = ({
             <details onToggle={() => setTagsOpen(!tagsOpen)}>
               <summary>Tags</summary>
               <fieldset role="group">
-                <label>
+                <Label>
                   All Products
                   <input
                     type="checkbox"
@@ -276,7 +277,7 @@ export const CardGrid = ({
                     disabled={disableFilters || !searchParams.tags?.length}
                     onChange={() => updateParams({ tags: undefined })}
                   />
-                </label>
+                </Label>
                 {results ? (
                   <FilterCheckboxes
                     filters={concatFoundAndNotFound(results.tags_data, searchParams.tags)}
@@ -315,7 +316,7 @@ export const CardGrid = ({
             >
               <fieldset>
                 <legend>
-                  <label htmlFor={minPriceUid}>Minimum price</label>
+                  <Label htmlFor={minPriceUid}>Minimum price</Label>
                 </legend>
                 <div className="input">
                   <Pill className="-ml-2 shrink-0">{currencySymbol}</Pill>
@@ -332,7 +333,7 @@ export const CardGrid = ({
               </fieldset>
               <fieldset>
                 <legend>
-                  <label htmlFor={maxPriceUid}>Maximum price</label>
+                  <Label htmlFor={maxPriceUid}>Maximum price</Label>
                 </legend>
                 <div className="input">
                   <Pill className="-ml-2 shrink-0">{currencySymbol}</Pill>

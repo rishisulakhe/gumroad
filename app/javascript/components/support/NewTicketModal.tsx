@@ -8,6 +8,7 @@ import { useDomains } from "$app/components/DomainSettings";
 import { FileRowContent } from "$app/components/FileRowContent";
 import { Icon } from "$app/components/Icons";
 import { Modal } from "$app/components/Modal";
+import { Textarea } from "$app/components/Forms";
 import { showAlert } from "$app/components/server-components/Alert";
 import { ALLOWED_ATTACHMENT_MIMETYPES } from "$app/components/support/ConversationDetail";
 import { Row, RowActions, RowContent, Rows } from "$app/components/ui/Rows";
@@ -80,7 +81,7 @@ export function NewTicketModal({
         <label className="sr-only">Subject</label>
         <input value={subject} placeholder="Subject" onChange={(e) => setSubject(e.target.value)} />
         <label className="sr-only">Message</label>
-        <textarea
+        <Textarea
           rows={6}
           value={message}
           onChange={(e) => setMessage(e.target.value)}

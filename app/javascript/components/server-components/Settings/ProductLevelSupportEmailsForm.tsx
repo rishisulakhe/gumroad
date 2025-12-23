@@ -2,6 +2,7 @@ import * as React from "react";
 
 import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
+import { Input } from "$app/components/Input";
 import { TagInput } from "$app/components/TagInput";
 import Placeholder from "$app/components/ui/Placeholder";
 import { Row, RowActions, RowContent, RowDetails, Rows } from "$app/components/ui/Rows";
@@ -78,7 +79,7 @@ const ProductLevelSupportEmailRow = React.memo(
           <RowDetails className="flex flex-col gap-4">
             <fieldset>
               <label htmlFor={`${uid}email`}>Email</label>
-              <input
+              <Input
                 id={`${uid}email`}
                 type="email"
                 value={supportEmail.email}

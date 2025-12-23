@@ -5,6 +5,7 @@ import { register } from "$app/utils/serverComponentUtil";
 
 import { Form } from "$app/components/server-components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
+import { Textarea } from "$app/components/Forms";
 
 export const AdminPausePayoutsForm = ({
   user_id,
@@ -40,7 +41,7 @@ export const AdminPausePayoutsForm = ({
             ) : (
               <div className="grid gap-2">
                 {payouts_paused_by === "user" && <p>Payouts are currently paused by the creator.</p>}
-                <textarea
+                <Textarea
                   name="pause_payouts[reason]"
                   rows={2}
                   placeholder="Add a reason for pausing payouts. It'll be displayed to the user on their dashboard."

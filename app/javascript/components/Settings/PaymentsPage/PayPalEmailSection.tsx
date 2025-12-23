@@ -1,6 +1,7 @@
 import cx from "classnames";
 import * as React from "react";
 
+import { Input } from "$app/components/Input";
 import { FormFieldName, PayoutMethod } from "$app/components/server-components/Settings/PaymentsPage";
 
 const PayPalEmailSection = ({
@@ -45,7 +46,7 @@ const PayPalEmailSection = ({
           <legend>
             <label htmlFor={`${uid}-paypal-email`}>PayPal Email</label>
           </legend>
-          <input
+          <Input
             type="email"
             id={`${uid}-paypal-email`}
             placeholder="PayPal Email"

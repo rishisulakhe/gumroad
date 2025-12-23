@@ -7,6 +7,7 @@ import { NumberInput } from "$app/components/NumberInput";
 import { PriceInput } from "$app/components/PriceInput";
 import { Duration, useProductEditContext } from "$app/components/ProductEdit/state";
 import { Drawer, ReorderingHandle, SortableList } from "$app/components/SortableList";
+import { Textarea } from "$app/components/Forms";
 import { Pill } from "$app/components/ui/Pill";
 import Placeholder from "$app/components/ui/Placeholder";
 import { Row, RowActions, RowContent, RowDetails, Rows } from "$app/components/ui/Rows";
@@ -167,7 +168,7 @@ const DurationEditor = ({
             </fieldset>
             <fieldset>
               <label htmlFor={`${uid}-description`}>Description</label>
-              <textarea
+              <Textarea
                 id={`${uid}-description`}
                 value={duration.description}
                 onChange={(evt) => updateDuration({ description: evt.target.value })}

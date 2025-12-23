@@ -35,6 +35,7 @@ import { showAlert } from "$app/components/server-components/Alert";
 import { SubtitleList } from "$app/components/SubtitleList";
 import { SubtitleFile } from "$app/components/SubtitleList/Row";
 import { SubtitleUploadBox } from "$app/components/SubtitleUploadBox";
+import { Switch, Textarea } from "$app/components/Forms";
 import { NodeActionsMenu } from "$app/components/TiptapExtensions/NodeActionsMenu";
 import Placeholder from "$app/components/ui/Placeholder";
 import { Row, RowActions, RowContent, RowDetails } from "$app/components/ui/Rows";
@@ -596,7 +597,7 @@ const FileEmbedNodeView = ({ node, editor, getPos, updateAttributes }: NodeViewP
               <legend>
                 <label htmlFor={`${uid}description`}>Description</label>
               </legend>
-              <textarea
+              <Textarea
                 id={`${uid}description`}
                 rows={3}
                 maxLength={65_535}
@@ -623,9 +624,7 @@ const FileEmbedNodeView = ({ node, editor, getPos, updateAttributes }: NodeViewP
 
             {file.is_pdf ? (
               <label>
-                <input
-                  type="checkbox"
-                  role="switch"
+                <Switch
                   checked={file.pdf_stamp_enabled}
                   onChange={(e) => updateFile({ pdf_stamp_enabled: e.target.checked })}
                 />
@@ -657,9 +656,7 @@ const FileEmbedNodeView = ({ node, editor, getPos, updateAttributes }: NodeViewP
                   </div>
                 </fieldset>
                 <label>
-                  <input
-                    type="checkbox"
-                    role="switch"
+                  <Switch
                     checked={file.stream_only}
                     onChange={(e) => updateFile({ stream_only: e.target.checked })}
                   />

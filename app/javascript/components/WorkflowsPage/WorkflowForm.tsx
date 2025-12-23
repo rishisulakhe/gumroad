@@ -14,6 +14,7 @@ import {
 
 import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
+import { Input } from "$app/components/Forms";
 import { NumberInput } from "$app/components/NumberInput";
 import { TagInput } from "$app/components/TagInput";
 import { Pill } from "$app/components/ui/Pill";
@@ -318,7 +319,7 @@ const WorkflowForm = ({ context, workflow }: WorkflowFormProps) => {
             <legend>
               <label htmlFor="name">Name</label>
             </legend>
-            <input
+            <Input
               id="name"
               type="text"
               ref={nameInputRef}

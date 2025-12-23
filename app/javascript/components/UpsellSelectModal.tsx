@@ -13,6 +13,7 @@ import { RecurrencePriceValue } from "$app/components/ProductEdit/state";
 import { Select } from "$app/components/Select";
 import { showAlert } from "$app/components/server-components/Alert";
 import { useRunOnce } from "$app/components/useRunOnce";
+import { Switch } from "$app/components/Forms";
 
 export type ProductOption = {
   id: string;
@@ -158,9 +159,7 @@ export const UpsellSelectModal = ({
           open={!!discount}
           summary={
             <label>
-              <input
-                type="checkbox"
-                role="switch"
+              <Switch
                 checked={!!discount}
                 onChange={(evt) => setDiscount(evt.target.checked ? { type: "percent", value: 0 } : null)}
               />

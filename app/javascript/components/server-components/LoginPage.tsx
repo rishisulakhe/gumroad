@@ -9,6 +9,7 @@ import { ForgotPasswordForm } from "$app/components/Authentication/ForgotPasswor
 import { Layout } from "$app/components/Authentication/Layout";
 import { SocialAuth } from "$app/components/Authentication/SocialAuth";
 import { Button } from "$app/components/Button";
+import { Input } from "$app/components/Input";
 import { PasswordInput } from "$app/components/PasswordInput";
 import { Separator } from "$app/components/Separator";
 import { useOriginalLocation } from "$app/components/useOriginalLocation";
@@ -76,13 +77,12 @@ export const LoginPage = ({
               <legend>
                 <label htmlFor={`${uid}-email`}>Email</label>
               </legend>
-              <input
+              <Input
                 id={`${uid}-email`}
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                // We override the tabIndex to prevent the forgot password link interrupting the email -> password tab order
                 tabIndex={1}
                 autoComplete="email"
               />

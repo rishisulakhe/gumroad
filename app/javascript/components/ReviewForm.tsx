@@ -10,6 +10,7 @@ import { summarizeUploadProgress } from "$app/utils/summarizeUploadProgress";
 import { Button } from "$app/components/Button";
 import { useAppDomain } from "$app/components/DomainSettings";
 import { useLoggedInUser } from "$app/components/LoggedInUser";
+import { Textarea } from "$app/components/Forms";
 import { RatingSelector } from "$app/components/RatingSelector";
 import { ReviewVideoRecorder } from "$app/components/ReviewForm/ReviewVideoRecorder";
 import { VideoState, ReviewVideoRecorderUiState } from "$app/components/ReviewForm/ReviewVideoRecorderCommon";
@@ -260,7 +261,7 @@ export const ReviewForm = React.forwardRef<
   const textReview = viewing ? (
     <div className="w-full">{message ? `"${message}"` : "No written review"}</div>
   ) : (
-    <textarea
+    <Textarea
       id={uid}
       value={message}
       onChange={(evt) => setMessage(evt.target.value)}

@@ -9,6 +9,7 @@ import { getCssVariable } from "$app/utils/styles";
 
 import { useFont } from "$app/components/DesignSettings";
 import { Icon } from "$app/components/Icons";
+import { Label } from "$app/components/ui/Label";
 
 export const CreditCardInput = ({
   disabled,
@@ -34,7 +35,7 @@ export const CreditCardInput = ({
   return (
     <fieldset className={cx({ danger: invalid })}>
       <legend>
-        <label>Card information</label>
+        <Label>Card information</Label>
         {savedCreditCard ? (
           <button className="font-normal underline" disabled={disabled} onClick={() => setUseSavedCard(!useSavedCard)}>
             {useSavedCard ? "Use a different card?" : "Use saved card"}

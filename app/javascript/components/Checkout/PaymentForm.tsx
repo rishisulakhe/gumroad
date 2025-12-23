@@ -33,6 +33,7 @@ import { asyncVoid } from "$app/utils/promise";
 
 import { Button } from "$app/components/Button";
 import { CreditCardInput, StripeElementsProvider } from "$app/components/Checkout/CreditCardInput";
+import { Input } from "$app/components/Input";
 import { CustomFields } from "$app/components/Checkout/CustomFields";
 import { GiftForm } from "$app/components/Checkout/GiftForm";
 import {
@@ -63,6 +64,7 @@ import { useRefToLatest } from "$app/components/useRefToLatest";
 import { useRunOnce } from "$app/components/useRunOnce";
 
 import { Product } from "./cartState";
+import { Label } from "$app/components/ui/Label";
 
 const CountryInput = () => {
   const [state, dispatch] = useState();
@@ -85,7 +87,7 @@ const CountryInput = () => {
   return (
     <fieldset>
       <legend>
-        <label htmlFor={`${uid}country`}>Country</label>
+        <Label htmlFor={`${uid}country`}>Country</Label>
       </legend>
       <select
         id={`${uid}country`}
@@ -138,7 +140,7 @@ const StateInput = () => {
   return (
     <fieldset className={cx({ danger: errors.has("state") })}>
       <legend>
-        <label htmlFor={`${uid}state`}>{stateLabel}</label>
+        <Label htmlFor={`${uid}state`}>{stateLabel}</Label>
       </legend>
       {(state.country === "US" || state.country === "CA") && states !== null ? (
         <select
@@ -154,7 +156,7 @@ const StateInput = () => {
           ))}
         </select>
       ) : (
-        <input
+        <Input
           id={`${uid}state`}
           type="text"
           aria-invalid={errors.has("state")}
@@ -177,9 +179,9 @@ const ZipCodeInput = () => {
   return (
     <fieldset className={cx({ danger: errors.has("zipCode") })}>
       <legend>
-        <label htmlFor={`${uid}zipCode`}>{label}</label>
+        <Label htmlFor={`${uid}zipCode`}>{label}</Label>
       </legend>
-      <input
+      <Input
         id={`${uid}zipCode`}
         type="text"
         aria-invalid={errors.has("zipCode")}
@@ -220,12 +222,12 @@ const EmailAddress = () => {
       <div className="flex flex-col gap-4">
         <fieldset className={cx({ danger: errors.has("email") })}>
           <legend>
-            <label htmlFor={`${uid}email`}>
+            <Label htmlFor={`${uid}email`}>
               <h4>Email address</h4>
-            </label>
+            </Label>
           </legend>
           <div className={cx("popover", { expanded: !!state.emailTypoSuggestion })} style={{ width: "100%" }}>
-            <input
+            <Input
               id={`${uid}email`}
               type="email"
               aria-invalid={errors.has("email")}
@@ -386,9 +388,9 @@ const SharedInputs = ({ showCustomFields }: { showCustomFields: boolean }) => {
             {showVatIdInput ? (
               <fieldset className={cx({ danger: errors.has("vatId") })}>
                 <legend>
-                  <label htmlFor={`${uid}vatId`}>{vatLabel}</label>
+                  <Label htmlFor={`${uid}vatId`}>{vatLabel}</Label>
                 </legend>
-                <input
+                <Input
                   id={`${uid}vatId`}
                   type="text"
                   placeholder={vatLabel}
@@ -491,7 +493,7 @@ const CustomerDetails = ({ showCustomFields }: { showCustomFields: boolean }) =>
             <h4 style={{ display: "flex", justifyContent: "space-between" }}>
               Shipping information
               {isLoggedIn ? (
-                <label>
+                <Label>
                   <input
                     type="checkbox"
                     title="Save shipping address to account"
@@ -500,14 +502,14 @@ const CustomerDetails = ({ showCustomFields }: { showCustomFields: boolean }) =>
                     disabled={isProcessing(state)}
                   />
                   Keep on file
-                </label>
+                </Label>
               ) : null}
             </h4>
             <fieldset className={cx({ danger: errors.has("fullName") })}>
               <legend>
-                <label htmlFor={`${uid}fullName`}>Full name</label>
+                <Label htmlFor={`${uid}fullName`}>Full name</Label>
               </legend>
-              <input
+              <Input
                 id={`${uid}fullName`}
                 type="text"
                 aria-invalid={errors.has("fullName")}
@@ -519,9 +521,9 @@ const CustomerDetails = ({ showCustomFields }: { showCustomFields: boolean }) =>
             </fieldset>
             <fieldset className={cx({ danger: errors.has("address") })}>
               <legend>
-                <label htmlFor={`${uid}address`}>Street address</label>
+                <Label htmlFor={`${uid}address`}>Street address</Label>
               </legend>
-              <input
+              <Input
                 id={`${uid}address`}
                 type="text"
                 aria-invalid={errors.has("address")}
@@ -534,9 +536,9 @@ const CustomerDetails = ({ showCustomFields }: { showCustomFields: boolean }) =>
             <div style={{ display: "grid", gridAutoFlow: "column", gridAutoColumns: "1fr", gap: "var(--spacer-2)" }}>
               <fieldset className={cx({ danger: errors.has("city") })}>
                 <legend>
-                  <label htmlFor={`${uid}city`}>City</label>
+                  <Label htmlFor={`${uid}city`}>City</Label>
                 </legend>
-                <input
+                <Input
                   id={`${uid}city`}
                   type="text"
                   aria-invalid={errors.has("city")}
@@ -689,9 +691,9 @@ const CreditCard = () => {
         {!useSavedCard ? (
           <fieldset>
             <legend>
-              <label htmlFor={`${uid}nameOnCard`}>Name on card</label>
+              <Label htmlFor={`${uid}nameOnCard`}>Name on card</Label>
               {isLoggedIn ? (
-                <label>
+                <Label>
                   <input
                     type="checkbox"
                     disabled={isProcessing(state)}
@@ -699,10 +701,10 @@ const CreditCard = () => {
                     onChange={(evt) => setKeepOnFile(evt.target.checked)}
                   />
                   Save card
-                </label>
+                </Label>
               ) : null}
             </legend>
-            <input
+            <Input
               type="text"
               placeholder="John Doe"
               id={`${uid}nameOnCard`}

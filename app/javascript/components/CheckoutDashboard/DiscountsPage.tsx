@@ -17,6 +17,7 @@ import { AbortError, assertResponseError } from "$app/utils/request";
 import { writeQueryParams } from "$app/utils/url";
 
 import { Button } from "$app/components/Button";
+import { Checkbox } from "$app/components/Forms";
 import { DiscountInput, InputtedDiscount } from "$app/components/CheckoutDashboard/DiscountInput";
 import { Layout, Page } from "$app/components/CheckoutDashboard/Layout";
 import { CopyToClipboard } from "$app/components/CopyToClipboard";
@@ -46,6 +47,8 @@ import { useSortingTableDriver, Sort } from "$app/components/useSortingTableDriv
 
 import blackFridayIllustration from "$assets/images/illustrations/black_friday.svg";
 import placeholder from "$assets/images/placeholders/discounts.png";
+import { Label } from "$app/components/ui/Label";
+import { Switch } from "$app/components/Forms";
 
 type Product = {
   id: string;
@@ -899,7 +902,7 @@ const Form = ({
           </header>
           <fieldset className={cx({ danger: name.error })}>
             <legend>
-              <label htmlFor={`${uid}name`}>Name</label>
+              <Label htmlFor={`${uid}name`}>Name</Label>
             </legend>
             <input
               type="text"
@@ -913,7 +916,7 @@ const Form = ({
           </fieldset>
           <fieldset className={cx({ danger: code.error })}>
             <legend>
-              <label htmlFor={`${uid}code`}>Discount code</label>
+              <Label htmlFor={`${uid}code`}>Discount code</Label>
             </legend>
             <div className="grid grid-cols-[1fr_auto] gap-2">
               <input
@@ -945,7 +948,7 @@ const Form = ({
           </fieldset>
           <fieldset className={cx({ danger: selectedProductIds.error })}>
             <legend>
-              <label htmlFor={`${uid}products`}>Products</label>
+              <Label htmlFor={`${uid}products`}>Products</Label>
             </legend>
             <Select
               ref={selectedProductsFieldRef}
@@ -977,9 +980,8 @@ const Form = ({
               isDisabled={universal}
               aria-invalid={selectedProductIds.error}
             />
-            <label>
-              <input
-                type="checkbox"
+            <Label>
+              <Checkbox
                 checked={universal}
                 onChange={(evt) => {
                   setUniversal(evt.target.checked);
@@ -988,12 +990,12 @@ const Form = ({
                 aria-invalid={selectedProductIds.error}
               />
               All products
-            </label>
+            </Label>
           </fieldset>
           {canSetDuration ? (
             <fieldset>
               <legend>
-                <label htmlFor={`${uid}duration`}>Discount duration for memberships</label>
+                <Label htmlFor={`${uid}duration`}>Discount duration for memberships</Label>
               </legend>
               <TypeSafeOptionSelect
                 id={`${uid}duration`}
@@ -1033,21 +1035,19 @@ const Form = ({
               className="toggle"
               open={limitQuantity}
               summary={
-                <label>
-                  <input
-                    type="checkbox"
-                    role="switch"
+                <Label>
+                  <Switch
                     checked={limitQuantity}
                     onChange={(evt) => setLimitQuantity(evt.target.checked)}
                   />
                   Limit quantity
-                </label>
+                </Label>
               }
             >
               <div className="dropdown">
                 <fieldset className={cx({ danger: maxQuantity.error })}>
                   <legend>
-                    <label htmlFor={`${uid}quantity`}>Quantity</label>
+                    <Label htmlFor={`${uid}quantity`}>Quantity</Label>
                   </legend>
                   <NumberInput
                     value={maxQuantity.value}
@@ -1066,15 +1066,13 @@ const Form = ({
               className="toggle"
               open={limitValidity}
               summary={
-                <label>
-                  <input
-                    type="checkbox"
-                    role="switch"
+                <Label>
+                  <Switch
                     checked={limitValidity}
                     onChange={(evt) => setLimitValidity(evt.target.checked)}
                   />
                   Limit validity period
-                </label>
+                </Label>
               }
             >
               <div
@@ -1087,7 +1085,7 @@ const Form = ({
               >
                 <fieldset>
                   <legend>
-                    <label htmlFor={`${uid}validAt`}>Valid from</label>
+                    <Label htmlFor={`${uid}validAt`}>Valid from</Label>
                   </legend>
                   <DateInput
                     withTime
@@ -1097,18 +1095,17 @@ const Form = ({
                       if (date) setValidAt(date);
                     }}
                   />
-                  <label>
-                    <input
-                      type="checkbox"
+                  <Label>
+                    <Checkbox
                       checked={hasNoEndDate}
                       onChange={(evt) => setHasNoEndDate(evt.target.checked)}
                     />
                     No end date
-                  </label>
+                  </Label>
                 </fieldset>
                 <fieldset className={cx({ danger: expiresAt.error })}>
                   <legend>
-                    <label htmlFor={`${uid}expiresAt`}>Valid until</label>
+                    <Label htmlFor={`${uid}expiresAt`}>Valid until</Label>
                   </legend>
                   <DateInput
                     withTime
@@ -1127,21 +1124,19 @@ const Form = ({
               className="toggle"
               open={hasMinimumAmount}
               summary={
-                <label>
-                  <input
-                    type="checkbox"
-                    role="switch"
+                <Label>
+                  <Switch
                     checked={hasMinimumAmount}
                     onChange={(evt) => setHasMinimumAmount(evt.target.checked)}
                   />
                   Set a minimum qualifying amount
-                </label>
+                </Label>
               }
             >
               <div className="dropdown">
                 <fieldset className={cx({ danger: minimumAmount.error })}>
                   <legend>
-                    <label htmlFor={`${uid}minimumAmount`}>Minimum amount</label>
+                    <Label htmlFor={`${uid}minimumAmount`}>Minimum amount</Label>
                   </legend>
                   <PriceInput
                     id={`${uid}minimumAmount`}
@@ -1158,21 +1153,19 @@ const Form = ({
               className="toggle"
               open={hasMinimumQuantity}
               summary={
-                <label>
-                  <input
-                    type="checkbox"
-                    role="switch"
+                <Label>
+                  <Switch
                     checked={hasMinimumQuantity}
                     onChange={(evt) => setHasMinimumQuantity(evt.target.checked)}
                   />
                   Set a minimum quantity
-                </label>
+                </Label>
               }
             >
               <div className="dropdown">
                 <fieldset className={cx({ danger: minimumQuantity.error })}>
                   <legend>
-                    <label htmlFor={`${uid}minimumQuantity`}>Minimum quantity per product</label>
+                    <Label htmlFor={`${uid}minimumQuantity`}>Minimum quantity per product</Label>
                   </legend>
                   <NumberInput
                     value={minimumQuantity.value}

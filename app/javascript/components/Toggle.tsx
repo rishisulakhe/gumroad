@@ -1,3 +1,5 @@
+import { Switch } from "$app/components/Forms";
+import { Label } from "$app/components/ui/Label";
 import * as React from "react";
 
 export const Toggle = ({
@@ -15,10 +17,8 @@ export const Toggle = ({
   children?: React.ReactNode;
   ariaLabel?: string;
 }) => (
-  <label>
-    <input
-      type="checkbox"
-      role="switch"
+  <Label>
+    <Switch
       id={id}
       checked={value}
       onChange={(evt) => onChange?.(evt.target.checked)}
@@ -26,5 +26,5 @@ export const Toggle = ({
       aria-label={ariaLabel}
     />
     {children ? <span>{children}</span> : null}
-  </label>
+  </Label>
 );

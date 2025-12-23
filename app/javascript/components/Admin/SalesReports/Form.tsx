@@ -4,6 +4,7 @@ import * as React from "react";
 import { cast } from "ts-safe-cast";
 
 import Errors from "$app/components/Admin/Form/Errors";
+import { Label } from "$app/components/ui/Label";
 
 type Props = {
   countries: [string, string][];
@@ -52,7 +53,7 @@ const AdminSalesReportsForm = ({ countries, sales_types, authenticityToken }: Pr
         <header>Generate sales report with custom date ranges</header>
 
         <div className="grid grid-rows-[auto_1fr] gap-3">
-          <label htmlFor="country_code">Country</label>
+          <Label htmlFor="country_code">Country</Label>
           <select
             name="sales_report[country_code]"
             id="country_code"
@@ -74,7 +75,7 @@ const AdminSalesReportsForm = ({ countries, sales_types, authenticityToken }: Pr
 
         <div className="grid grid-cols-2 gap-3">
           <div className="grid grid-rows-[auto_1fr] gap-3">
-            <label htmlFor="start_date">Start date</label>
+            <Label htmlFor="start_date">Start date</Label>
             <input
               name="sales_report[start_date]"
               id="start_date"
@@ -89,7 +90,7 @@ const AdminSalesReportsForm = ({ countries, sales_types, authenticityToken }: Pr
           </div>
 
           <div className="grid grid-rows-[auto_1fr] gap-3">
-            <label htmlFor="end_date">End date</label>
+            <Label htmlFor="end_date">End date</Label>
             <input
               name="sales_report[end_date]"
               id="end_date"
@@ -105,7 +106,7 @@ const AdminSalesReportsForm = ({ countries, sales_types, authenticityToken }: Pr
         </div>
 
         <div className="grid grid-rows-[auto_1fr] gap-3">
-          <label htmlFor="sales_type">Type of sales</label>
+          <Label htmlFor="sales_type">Type of sales</Label>
           <select
             name="sales_report[sales_type]"
             id="sales_type"

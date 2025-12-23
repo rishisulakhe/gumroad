@@ -5,6 +5,7 @@ import { DISCORD_CLIENT_ID, DISCORD_OAUTH_URL } from "$app/utils/integrations";
 import { startOauthRedirectChecker } from "$app/utils/oauth";
 
 import { Button } from "$app/components/Button";
+import { Checkbox } from "$app/components/Checkbox";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { useProductEditContext } from "$app/components/ProductEdit/state";
 import { showAlert } from "$app/components/server-components/Alert";
@@ -138,8 +139,7 @@ export const DiscordIntegrationEditor = ({
               ) : null}
               {product.native_type === "membership" ? (
                 <label>
-                  <input
-                    type="checkbox"
+                  <Checkbox
                     checked={integration.keep_inactive_members}
                     onChange={() =>
                       onChange({ ...integration, keep_inactive_members: !integration.keep_inactive_members })

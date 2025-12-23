@@ -17,6 +17,7 @@ import { Icon } from "$app/components/Icons";
 import { useLoggedInUser } from "$app/components/LoggedInUser";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Layout as SettingsLayout } from "$app/components/Settings/Layout";
+import { Checkbox, Switch, Textarea } from "$app/components/Forms";
 import { TypeSafeOptionSelect } from "$app/components/TypeSafeOptionSelect";
 import Placeholder from "$app/components/ui/Placeholder";
 import { Row, RowActions, RowContent, RowDetails, Rows } from "$app/components/ui/Rows";
@@ -85,9 +86,7 @@ const ThirdPartyAnalyticsPage = ({ settings_pages, third_party_analytics, produc
             open={!thirdPartyAnalytics.disable_third_party_analytics}
             summary={
               <label>
-                <input
-                  type="checkbox"
-                  role="switch"
+                <Switch
                   checked={!thirdPartyAnalytics.disable_third_party_analytics}
                   onChange={(evt) => updateThirdPartyAnalytics({ disable_third_party_analytics: !evt.target.checked })}
                 />
@@ -127,8 +126,7 @@ const ThirdPartyAnalyticsPage = ({ settings_pages, third_party_analytics, produc
                 />
               </fieldset>
               <label>
-                <input
-                  type="checkbox"
+                <Checkbox
                   checked={!thirdPartyAnalytics.skip_free_sale_analytics}
                   onChange={(evt) => updateThirdPartyAnalytics({ skip_free_sale_analytics: !evt.target.checked })}
                 />
@@ -146,9 +144,7 @@ const ThirdPartyAnalyticsPage = ({ settings_pages, third_party_analytics, produc
             open={thirdPartyAnalytics.enable_verify_domain_third_party_services}
             summary={
               <label>
-                <input
-                  type="checkbox"
-                  role="switch"
+                <Switch
                   checked={thirdPartyAnalytics.enable_verify_domain_third_party_services}
                   onChange={(evt) =>
                     updateThirdPartyAnalytics({ enable_verify_domain_third_party_services: evt.target.checked })
@@ -166,7 +162,7 @@ const ThirdPartyAnalyticsPage = ({ settings_pages, third_party_analytics, produc
                     Learn more
                   </a>
                 </legend>
-                <textarea
+                <Textarea
                   id={`${uid}facebookMetaTag`}
                   placeholder='<meta name="facebook-domain-verification" content="me2vv6lgwoh" />'
                   value={thirdPartyAnalytics.facebook_meta_tag}
@@ -310,7 +306,7 @@ const SnippetRow = ({
           </fieldset>
           <fieldset>
             <label htmlFor={`${uid}code`}>Code</label>
-            <textarea
+            <Textarea
               id={`${uid}code`}
               placeholder="Enter your analytics code"
               value={snippet.code}

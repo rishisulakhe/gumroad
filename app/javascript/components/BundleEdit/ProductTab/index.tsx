@@ -17,6 +17,7 @@ import { PriceEditor } from "$app/components/ProductEdit/ProductTab/PriceEditor"
 import { ThumbnailEditor } from "$app/components/ProductEdit/ProductTab/ThumbnailEditor";
 import { RefundPolicySelector } from "$app/components/ProductEdit/RefundPolicy";
 import { Toggle } from "$app/components/Toggle";
+import { Label } from "$app/components/ui/Label";
 
 export const ProductTab = () => {
   const {
@@ -50,7 +51,7 @@ export const ProductTab = () => {
       <form>
         <section className="p-4! md:p-8!">
           <fieldset>
-            <label htmlFor={`${uid}-name`}>Name</label>
+            <Label htmlFor={`${uid}-name`}>Name</Label>
             <input
               id={`${uid}-name`}
               type="text"

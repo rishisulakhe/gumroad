@@ -11,6 +11,7 @@ import { showAlert } from "$app/components/server-components/Alert";
 import { usePurchaseCustomFields, usePurchaseInfo } from "$app/components/server-components/DownloadPage/WithContent";
 import Placeholder from "$app/components/ui/Placeholder";
 import { Row, RowContent, Rows } from "$app/components/ui/Rows";
+import { Label } from "$app/components/ui/Label";
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024;
 
@@ -79,11 +80,11 @@ export const FileInput = ({ customFieldId }: { customFieldId: string }) => {
   });
 
   const fileUpload = (
-    <label className="button primary">
+    <Label className="button primary">
       <input type="file" onChange={handleFileChange} disabled={isUploading} multiple />
       <Icon name="upload-fill" />
       Upload files
-    </label>
+    </Label>
   );
 
   return files.length ? (

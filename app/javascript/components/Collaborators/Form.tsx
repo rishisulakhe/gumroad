@@ -16,12 +16,14 @@ import { assertResponseError } from "$app/utils/request";
 import { Button } from "$app/components/Button";
 import { Layout } from "$app/components/Collaborators/Layout";
 import { Icon } from "$app/components/Icons";
+import { Checkbox, Input, Switch } from "$app/components/Forms";
 import { Modal } from "$app/components/Modal";
 import { NumberInput } from "$app/components/NumberInput";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Pill } from "$app/components/ui/Pill";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
 import { WithTooltip } from "$app/components/WithTooltip";
+import { Label } from "$app/components/ui/Label";
 
 const DEFAULT_PERCENT_COMMISSION = 50;
 const MIN_PERCENT_COMMISSION = 1;
@@ -228,11 +230,11 @@ const CollaboratorForm = () => {
           {!isEditing ? (
             <fieldset className={cx({ danger: collaboratorEmail.error })}>
               <legend>
-                <label htmlFor="email">Email</label>
+                <Label htmlFor="email">Email</Label>
               </legend>
 
               <div className="input">
-                <input
+                <Input
                   ref={emailInputRef}
                   id="email"
                   type="email"
@@ -256,10 +258,8 @@ const CollaboratorForm = () => {
               <TableBody>
                 <TableRow>
                   <TableCell>
-                    <input
+                    <Switch
                       id="all-products-cut"
-                      type="checkbox"
-                      role="switch"
                       checked={applyToAllProducts}
                       onChange={(evt) => {
                         const enabled = evt.target.checked;
@@ -272,7 +272,7 @@ const CollaboratorForm = () => {
                     />
                   </TableCell>
                   <TableCell>
-                    <label htmlFor="all-products-cut">All products</label>
+                    <Label htmlFor="all-products-cut">All products</Label>
                   </TableCell>
                   <TableCell>
                     <fieldset className={cx({ danger: defaultPercentCommission.hasError })}>
@@ -293,9 +293,8 @@ const CollaboratorForm = () => {
                     </fieldset>
                   </TableCell>
                   <TableCell>
-                    <label>
-                      <input
-                        type="checkbox"
+                    <Label>
+                      <Checkbox
                         checked={!dontShowAsCoCreator}
                         onChange={(evt) => {
                           const value = !evt.target.checked;
@@ -307,7 +306,7 @@ const CollaboratorForm = () => {
                         disabled={!applyToAllProducts}
                       />
                       Show as co-creator
-                    </label>
+                    </Label>
                   </TableCell>
                 </TableRow>
                 {products.map((product) => {
@@ -316,10 +315,8 @@ const CollaboratorForm = () => {
                   return shouldShowProduct(product) ? (
                     <TableRow key={product.id}>
                       <TableCell>
-                        <input
+                        <Switch
                           id={`enable-product-${product.id}`}
-                          type="checkbox"
-                          role="switch"
                           disabled={product.has_another_collaborator}
                           checked={product.enabled}
                           onChange={(evt) => handleProductChange(product.id, { enabled: evt.target.checked })}
@@ -327,7 +324,7 @@ const CollaboratorForm = () => {
                         />
                       </TableCell>
                       <TableCell>
-                        <label htmlFor={`enable-product-${product.id}`}>{product.name}</label>
+                        <Label htmlFor={`enable-product-${product.id}`}>{product.name}</Label>
                         {product.has_another_collaborator || product.has_affiliates ? (
                           <small>
                             {product.has_another_collaborator
@@ -358,9 +355,8 @@ const CollaboratorForm = () => {
                         </fieldset>
                       </TableCell>
                       <TableCell>
-                        <label>
-                          <input
-                            type="checkbox"
+                        <Label>
+                          <Checkbox
                             checked={!product.dont_show_as_co_creator}
                             onChange={(evt) =>
                               handleProductChange(product.id, { dont_show_as_co_creator: !evt.target.checked })
@@ -368,7 +364,7 @@ const CollaboratorForm = () => {
                             disabled={disabled}
                           />
                           Show as co-creator
-                        </label>
+                        </Label>
                       </TableCell>
                     </TableRow>
                   ) : null;
@@ -376,9 +372,8 @@ const CollaboratorForm = () => {
               </TableBody>
             </Table>
           </fieldset>
-          <label>
-            <input
-              type="checkbox"
+          <Label>
+            <Checkbox
               checked={showIneligibleProducts}
               onChange={(evt) => {
                 const enabled = evt.target.checked;
@@ -393,7 +388,7 @@ const CollaboratorForm = () => {
               }}
             />
             Show unpublished and ineligible products
-          </label>
+          </Label>
         </section>
         <Modal
           open={isConfirmationModalOpen}

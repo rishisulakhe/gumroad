@@ -25,6 +25,7 @@ import { ALLOWED_EXTENSIONS } from "$app/utils/file";
 import { assertResponseError, request, ResponseError } from "$app/utils/request";
 
 import { Icon } from "$app/components/Icons";
+import { Input, Switch } from "$app/components/Forms";
 import { Popover, Props as PopoverProps } from "$app/components/Popover";
 import { Props as ProductProps } from "$app/components/Product";
 import { CardGrid, SORT_BY_LABELS, useSearchReducer } from "$app/components/Product/CardGrid";
@@ -261,16 +262,14 @@ export const SectionLayout = ({
         <EditorMenu label="Edit section" onClose={onClose}>
           <EditorSubmenu heading="Name" text={section.header}>
             <fieldset>
-              <input
+              <Input
                 placeholder="Name"
                 value={section.header}
                 onChange={(e) => updateSection({ header: e.target.value })}
               />
             </fieldset>
             <label>
-              <input
-                type="checkbox"
-                role="switch"
+              <Switch
                 checked={!section.hide_header}
                 onChange={() => updateSection({ hide_header: !section.hide_header })}
               />
@@ -355,18 +354,14 @@ const ProductsSettings = ({ section }: { section: ProductsSection }) => {
         />
       </fieldset>
       <label>
-        <input
-          type="checkbox"
-          role="switch"
+        <Switch
           checked={section.show_filters}
           onChange={() => updateSection({ show_filters: !section.show_filters })}
         />
         Show product filters
       </label>
       <label>
-        <input
-          type="checkbox"
-          role="switch"
+        <Switch
           checked={section.add_new_products}
           onChange={() => updateSection({ add_new_products: !section.add_new_products })}
         />
@@ -549,7 +544,7 @@ const SubscribeSectionView = ({ section }: { section: SubscribeSection }) => {
       section={section}
       menuItems={[
         <EditorSubmenu key="0" heading="Button Label" text={section.button_label}>
-          <input
+          <Input
             type="text"
             placeholder="Subscribe"
             aria-label="Button Label"

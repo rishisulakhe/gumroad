@@ -10,6 +10,7 @@ import { assertResponseError, request } from "$app/utils/request";
 import { Button, NavigationButton } from "$app/components/Button";
 import { PageListLayout } from "$app/components/Download/PageListLayout";
 import { Icon } from "$app/components/Icons";
+import { Input } from "$app/components/Input";
 import { useLoggedInUser } from "$app/components/LoggedInUser";
 import { Modal } from "$app/components/Modal";
 import { PurchaseArchiveButton } from "$app/components/PurchaseArchiveButton";
@@ -442,7 +443,7 @@ const AddToLibrary = ({ add_to_library_option, terms_page_url, purchase_id, purc
           <div>
             <form autoComplete="off" onSubmit={handleSignupAndAddPurchaseToLibrary} className="grid gap-4">
               <fieldset>
-                <input
+                <Input
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}

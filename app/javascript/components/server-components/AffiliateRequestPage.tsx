@@ -9,9 +9,11 @@ import { register } from "$app/utils/serverComponentUtil";
 
 import { Button } from "$app/components/Button";
 import { useAppDomain } from "$app/components/DomainSettings";
+import { Input } from "$app/components/Forms";
 import { useLoggedInUser } from "$app/components/LoggedInUser";
 import { Layout } from "$app/components/Profile/Layout";
 import { showAlert } from "$app/components/server-components/Alert";
+import { Textarea } from "$app/components/Forms";
 import { PageHeader } from "$app/components/ui/PageHeader";
 
 type FormStatus =
@@ -91,7 +93,7 @@ const AffiliateRequestPage = ({ creator_profile }: Props) => {
                   <legend>
                     <label htmlFor={nameUID}>Name</label>
                   </legend>
-                  <input
+                  <Input
                     id={nameUID}
                     type="text"
                     placeholder="Name"
@@ -105,7 +107,7 @@ const AffiliateRequestPage = ({ creator_profile }: Props) => {
                   <legend>
                     <label htmlFor={emailUID}>Email</label>
                   </legend>
-                  <input
+                  <Input
                     id={emailUID}
                     type="text"
                     placeholder="Email"
@@ -118,7 +120,7 @@ const AffiliateRequestPage = ({ creator_profile }: Props) => {
                 <legend>
                   <label htmlFor={promotionUID}>Promotion</label>
                 </legend>
-                <textarea
+                <Textarea
                   id={promotionUID}
                   rows={5}
                   placeholder="How do you intend to promote their products? How big is your audience?"

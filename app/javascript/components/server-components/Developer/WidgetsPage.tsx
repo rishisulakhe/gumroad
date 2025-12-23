@@ -16,6 +16,7 @@ import { Tab, Tabs } from "$app/components/Developer/Tabs";
 import { useHasChanged } from "$app/components/Developer/useHasChanged";
 import { DomainSettingsProvider, useDomains } from "$app/components/DomainSettings";
 import { Icon } from "$app/components/Icons";
+import { Switch } from "$app/components/Forms";
 
 type Props = {
   default_product: Product;
@@ -227,7 +228,7 @@ const OverlayPanel = ({ selectedProduct }: PanelProps) => {
       <CodeContainer codeToCopy={codeToCopy} />
       <fieldset className="grid gap-4">
         <label>
-          <input type="checkbox" checked={isWanted} onChange={(e) => setIsWanted(e.target.checked)} role="switch" />
+          <Switch checked={isWanted} onChange={(e) => setIsWanted(e.target.checked)}  />
           Send directly to checkout page
         </label>
       </fieldset>

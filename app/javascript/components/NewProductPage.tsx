@@ -19,6 +19,7 @@ import { assertResponseError, request } from "$app/utils/request";
 import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { Popover } from "$app/components/Popover";
+import { Textarea } from "$app/components/Forms";
 import { showAlert } from "$app/components/server-components/Alert";
 import { TypeSafeOptionSelect } from "$app/components/TypeSafeOptionSelect";
 import { PageHeader } from "$app/components/ui/PageHeader";
@@ -246,7 +247,7 @@ const NewProductPage = ({
                       Got an idea? Give clear instructions, and let AI create your product—quick and easy! Customize it
                       to make it yours.
                     </p>
-                    <textarea
+                    <Textarea
                       id={`ai-prompt-${formUID}`}
                       placeholder="e.g., a 'Coding with AI using Cursor for Designers' ebook with 5 chapters for $35'."
                       value={aiPrompt}

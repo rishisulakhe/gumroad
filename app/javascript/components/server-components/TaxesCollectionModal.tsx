@@ -5,6 +5,7 @@ import { assertResponseError, request, ResponseError } from "$app/utils/request"
 import { register } from "$app/utils/serverComponentUtil";
 
 import { Button } from "$app/components/Button";
+import { Input } from "$app/components/Input";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { Modal } from "$app/components/Modal";
 
@@ -74,7 +75,7 @@ export const TaxesCollectionModal = ({ taxesOwed, creditCreationDate, name }: Pr
                   Type your full name to opt-in: <b>{name || ""}</b>
                 </span>
               </label>
-              <input
+              <Input
                 id={`${uid}optInFullName`}
                 type="text"
                 aria-invalid={error.length !== 0}

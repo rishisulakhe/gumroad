@@ -5,6 +5,7 @@ import { register } from "$app/utils/serverComponentUtil";
 
 import { Form } from "$app/components/server-components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
+import { Input } from "$app/components/Forms";
 
 export const AdminChangeEmailForm = ({ user_id, current_email }: { user_id: number; current_email: string | null }) => (
   <Form
@@ -16,7 +17,7 @@ export const AdminChangeEmailForm = ({ user_id, current_email }: { user_id: numb
     {(isLoading) => (
       <fieldset>
         <div style={{ display: "grid", gap: "var(--spacer-3)", gridTemplateColumns: "1fr auto" }}>
-          <input type="email" name="update_email[email_address]" placeholder={current_email ?? ""} required />
+          <Input type="email" name="update_email[email_address]" placeholder={current_email ?? ""} required />
           <button type="submit" className="button" disabled={isLoading}>
             {isLoading ? "Updating..." : "Update email"}
           </button>

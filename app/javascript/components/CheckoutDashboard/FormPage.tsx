@@ -11,6 +11,7 @@ import { assertResponseError } from "$app/utils/request";
 
 import { Button } from "$app/components/Button";
 import { CartItem } from "$app/components/Checkout/cartState";
+import { Checkbox, Switch } from "$app/components/Forms";
 import { CheckoutPreview } from "$app/components/CheckoutDashboard/CheckoutPreview";
 import { Layout, Page } from "$app/components/CheckoutDashboard/Layout";
 import { Icon } from "$app/components/Icons";
@@ -20,6 +21,7 @@ import { Select } from "$app/components/Select";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Toggle } from "$app/components/Toggle";
 import { TypeSafeOptionSelect } from "$app/components/TypeSafeOptionSelect";
+import { Label } from "$app/components/ui/Label";
 
 export type SimpleProduct = { id: string; name: string; archived: boolean };
 
@@ -129,7 +131,7 @@ const FormPage = ({
                     <div className="flex flex-col gap-4">
                       <fieldset>
                         <legend>
-                          <label htmlFor={`${uid}-${field.key}-type`}>Type of field</label>
+                          <Label htmlFor={`${uid}-${field.key}-type`}>Type of field</Label>
                         </legend>
                         <div className="flex gap-2">
                           <TypeSafeOptionSelect
@@ -152,22 +154,20 @@ const FormPage = ({
                           </Button>
                         </div>
                         {field.type !== "terms" ? (
-                          <label>
-                            <input
-                              type="checkbox"
-                              role="switch"
+                          <Label>
+                            <Switch
                               checked={field.required}
                               onChange={(e) => updateCustomField(i, { required: e.target.checked })}
                             />
                             Required
-                          </label>
+                          </Label>
                         ) : null}
                       </fieldset>
                       <fieldset className={cx({ danger: errors.get(field.key)?.has("name") })}>
                         <legend>
-                          <label htmlFor={`${uid}-${field.key}-name`}>
+                          <Label htmlFor={`${uid}-${field.key}-name`}>
                             {field.type === "terms" ? "Terms URL" : "Label"}
-                          </label>
+                          </Label>
                         </legend>
                         <input
                           id={`${uid}-${field.key}-name`}
@@ -178,7 +178,7 @@ const FormPage = ({
                       </fieldset>
                       <fieldset className={cx({ danger: errors.get(field.key)?.has("products") })}>
                         <legend>
-                          <label htmlFor={`${uid}-${field.key}-products`}>Products</label>
+                          <Label htmlFor={`${uid}-${field.key}-products`}>Products</Label>
                         </legend>
                         <Select
                           inputId={`${uid}-${field.key}-products`}
@@ -196,9 +196,8 @@ const FormPage = ({
                             updateCustomField(i, { global: false, products: items.map(({ id }) => id) })
                           }
                         />
-                        <label>
-                          <input
-                            type="checkbox"
+                        <Label>
+                          <Checkbox
                             checked={field.global}
                             onChange={(e) =>
                               updateCustomField(
@@ -210,16 +209,15 @@ const FormPage = ({
                             }
                           />{" "}
                           All products
-                        </label>
+                        </Label>
                         {field.global || field.products.length > 1 ? (
-                          <label>
-                            <input
-                              type="checkbox"
+                          <Label>
+                            <Checkbox
                               checked={field.collect_per_product}
                               onChange={(e) => updateCustomField(i, { collect_per_product: e.target.checked })}
                             />{" "}
                             Collect separately for each product on checkout
-                          </label>
+                          </Label>
                         ) : null}
                       </fieldset>
                     </div>
@@ -260,7 +258,7 @@ const FormPage = ({
             </header>
             <fieldset>
               <legend>Add discount code field to purchase form</legend>
-              <label>
+              <Label>
                 <input
                   type="radio"
                   checked={displayOfferCodeField}
@@ -268,8 +266,8 @@ const FormPage = ({
                   disabled={!loggedInUser?.policies.checkout_form.update}
                 />
                 Only if a discount is available
-              </label>
-              <label>
+              </Label>
+              <Label>
                 <input
                   type="radio"
                   checked={!displayOfferCodeField}
@@ -277,7 +275,7 @@ const FormPage = ({
                   disabled={!loggedInUser?.policies.checkout_form.update}
                 />
                 Never
-              </label>
+              </Label>
             </fieldset>
           </section>
           <section className="space-y-4 border-b border-border p-4 md:p-8">
@@ -289,7 +287,7 @@ const FormPage = ({
             </header>
             <fieldset>
               <legend>Product recommendations during checkout</legend>
-              <label>
+              <Label>
                 <input
                   type="radio"
                   checked={recommendationType === "no_recommendations"}
@@ -298,8 +296,8 @@ const FormPage = ({
                   }}
                 />
                 Don't recommend any products
-              </label>
-              <label>
+              </Label>
+              <Label>
                 <input
                   type="radio"
                   checked={recommendationType === "own_products"}
@@ -308,8 +306,8 @@ const FormPage = ({
                   }}
                 />
                 Recommend my products
-              </label>
-              <label>
+              </Label>
+              <Label>
                 <input
                   type="radio"
                   checked={recommendationType === "directly_affiliated_products"}
@@ -318,8 +316,8 @@ const FormPage = ({
                   }}
                 />
                 <span>Recommend my products and products I'm an affiliate of</span>
-              </label>
-              <label>
+              </Label>
+              <Label>
                 <input
                   type="radio"
                   checked={recommendationType === "gumroad_affiliates_products"}
@@ -333,7 +331,7 @@ const FormPage = ({
                     Gumroad Affiliates
                   </a>
                 </span>
-              </label>
+              </Label>
             </fieldset>
           </section>
           <section className="space-y-4 border-b border-border p-4 md:p-8">

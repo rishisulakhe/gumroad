@@ -40,6 +40,7 @@ import { TypeSafeOptionSelect } from "$app/components/TypeSafeOptionSelect";
 import { Calendar } from "$app/components/ui/Calendar";
 import { Pill } from "$app/components/ui/Pill";
 import { useRunOnce } from "$app/components/useRunOnce";
+import { Label } from "$app/components/ui/Label";
 
 const PWYWInput = React.forwardRef<
   HTMLInputElement,
@@ -59,7 +60,7 @@ const PWYWInput = React.forwardRef<
     <fieldset className={cx({ danger: hasError })}>
       {!hideLabel ? (
         <legend>
-          <label htmlFor={uid}>Name a fair price:</label>
+          <Label htmlFor={uid}>Name a fair price:</Label>
         </legend>
       ) : null}
       <PriceInput
@@ -741,7 +742,7 @@ export const ConfigurationSelector = React.forwardRef<
       {hasConfigurableQuantity ? (
         <fieldset>
           <legend>
-            <label htmlFor={quantityInputUID}>{product.is_multiseat_license ? "Seats" : "Quantity"}</label>
+            <Label htmlFor={quantityInputUID}>{product.is_multiseat_license ? "Seats" : "Quantity"}</Label>
           </legend>
           <NumberInput onChange={(quantity) => update({ quantity: quantity ?? 0 })} value={selection.quantity}>
             {(props) => <input type="number" id={quantityInputUID} {...props} min={1} max={maxQuantity ?? undefined} />}

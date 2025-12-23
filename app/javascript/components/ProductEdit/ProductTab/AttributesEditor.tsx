@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { Button } from "$app/components/Button";
+import { Input } from "$app/components/Forms";
 import { Icon } from "$app/components/Icons";
 import Placeholder from "$app/components/ui/Placeholder";
 
@@ -77,13 +78,13 @@ const AttributeEditor = ({
   onDelete: () => void;
 }) => (
   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr max-content", gap: "var(--spacer-2)" }}>
-    <input
+    <Input
       type="text"
       value={attribute.name}
       onChange={(evt) => onUpdate?.({ name: evt.target.value })}
       disabled={!onUpdate}
     />
-    <input
+    <Input
       type="text"
       value={attribute.value}
       onChange={(evt) => onUpdate?.({ value: evt.target.value })}

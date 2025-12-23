@@ -8,6 +8,7 @@ import { Details } from "$app/components/Details";
 import { Modal } from "$app/components/Modal";
 import { Popover } from "$app/components/Popover";
 import { Select } from "$app/components/Select";
+import { Textarea } from "$app/components/Forms";
 import { Toggle } from "$app/components/Toggle";
 import { useUserAgentInfo } from "$app/components/UserAgent";
 
@@ -123,7 +124,7 @@ export const RefundPolicySelector = ({
           <legend>
             <label htmlFor={`${uid}-refund-policy-fine-print`}>Fine print (optional)</label>
           </legend>
-          <textarea
+          <Textarea
             id={`${uid}-refund-policy-fine-print`}
             maxLength={3000}
             rows={10}

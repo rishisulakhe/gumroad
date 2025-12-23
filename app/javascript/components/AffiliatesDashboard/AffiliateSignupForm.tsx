@@ -14,6 +14,7 @@ import { isUrlValid } from "$app/utils/url";
 
 import { Button, NavigationButton } from "$app/components/Button";
 import { CopyToClipboard } from "$app/components/CopyToClipboard";
+import { Input, Switch } from "$app/components/Forms";
 import { useLoggedInUser } from "$app/components/LoggedInUser";
 import { NumberInput } from "$app/components/NumberInput";
 import { AffiliatesNavigation, Layout } from "$app/components/server-components/AffiliatesPage";
@@ -25,6 +26,7 @@ import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, Tabl
 import { WithTooltip } from "$app/components/WithTooltip";
 
 import placeholderImage from "$assets/images/placeholders/affiliate-signup-form.png";
+import { Label } from "$app/components/ui/Label";
 
 type InvalidProductAttrs = Set<"commission" | "destination_url">;
 
@@ -133,7 +135,7 @@ export const AffiliateSignupForm = () => {
             </header>
             <fieldset>
               <legend>
-                <label htmlFor="affiliate-link">Your affiliate link</label>
+                <Label htmlFor="affiliate-link">Your affiliate link</Label>
               </legend>
               <div className="input input-wrapper">
                 <input
@@ -224,10 +226,8 @@ export const ProductRow = ({ product, disabled, onChange }: ProductRowProps) => 
   return (
     <TableRow>
       <TableCell>
-        <input
+        <Switch
           id={uid}
-          type="checkbox"
-          role="switch"
           checked={product.enabled}
           onChange={(evt) => onChange({ enabled: evt.target.checked })}
           aria-label="Enable product"
@@ -235,7 +235,7 @@ export const ProductRow = ({ product, disabled, onChange }: ProductRowProps) => 
         />
       </TableCell>
       <TableCell>
-        <label htmlFor={uid}>{product.name}</label>
+        <Label htmlFor={uid}>{product.name}</Label>
       </TableCell>
       <TableCell>
         <fieldset className={cx({ danger: invalidAttrs.has("commission") })}>
@@ -257,7 +257,7 @@ export const ProductRow = ({ product, disabled, onChange }: ProductRowProps) => 
       </TableCell>
       <TableCell>
         <fieldset className={cx({ danger: invalidAttrs.has("destination_url") })}>
-          <input
+          <Input
             type="text"
             aria-label="destination_url"
             disabled={disabled || !product.enabled}

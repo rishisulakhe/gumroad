@@ -4,6 +4,7 @@ import { createCast } from "ts-safe-cast";
 import { register } from "$app/utils/serverComponentUtil";
 
 import { Button } from "$app/components/Button";
+import { Input } from "$app/components/Input";
 import Placeholder from "$app/components/ui/Placeholder";
 
 import { Layout, LayoutProps } from "./Layout";
@@ -152,7 +153,7 @@ const EmailConfirmation = ({ confirmation_info, authenticity_token }: EmailConfi
         <input type="hidden" name="id" value={confirmation_info.id} />
         <input type="hidden" name="destination" value={confirmation_info.destination ?? ""} />
         <input type="hidden" name="display" value={confirmation_info.display ?? ""} />
-        <input type="text" name="email" placeholder="Email address" defaultValue={confirmation_info.email ?? ""} />
+        <Input type="text" name="email" placeholder="Email address" defaultValue={confirmation_info.email ?? ""} />
         <Button type="submit" color="accent">
           Confirm email
         </Button>

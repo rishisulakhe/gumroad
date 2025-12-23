@@ -1,6 +1,8 @@
 import * as React from "react";
 
 import { CopyToClipboard } from "$app/components/CopyToClipboard";
+import { Textarea } from "$app/components/Forms";
+import { Label } from "$app/components/ui/Label";
 
 export const CodeContainer = ({ codeToCopy }: { codeToCopy: string }) => {
   const uid = React.useId();
@@ -15,14 +17,14 @@ export const CodeContainer = ({ codeToCopy }: { codeToCopy: string }) => {
   return (
     <fieldset>
       <legend>
-        <label htmlFor={uid}>Copy and paste this code into your website</label>
+        <Label htmlFor={uid}>Copy and paste this code into your website</Label>
         <CopyToClipboard tooltipPosition="bottom" text={codeToCopy}>
           <button type="button" className="font-normal underline">
             Copy embed code
           </button>
         </CopyToClipboard>
       </legend>
-      <textarea id={uid} ref={textAreaRef} aria-label="Widget code" readOnly value={codeToCopy} />
+      <Textarea id={uid} ref={textAreaRef} aria-label="Widget code" readOnly value={codeToCopy} />
       <small>We highly recommend you have an SSL certificate to increase buyer confidence.</small>
     </fieldset>
   );

@@ -50,6 +50,7 @@ import { useConfigureEvaporate } from "$app/components/useConfigureEvaporate";
 import { useDebouncedCallback } from "$app/components/useDebouncedCallback";
 import { useRunOnce } from "$app/components/useRunOnce";
 import { WithTooltip } from "$app/components/WithTooltip";
+import { Switch } from "$app/components/Forms";
 
 type ProductOrVariantOption = {
   id: string;
@@ -862,9 +863,7 @@ export const EmailForm = () => {
                     <>
                       {context.profile_sections.map((section) => (
                         <label key={section.id} className="w-fit">
-                          <input
-                            type="checkbox"
-                            role="switch"
+                          <Switch
                             checked={shownInProfileSections.includes(section.id)}
                             onChange={() => {
                               setShownInProfileSections((prevSections) =>

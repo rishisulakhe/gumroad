@@ -24,6 +24,7 @@ import { useUserAgentInfo } from "$app/components/UserAgent";
 import { WithTooltip } from "$app/components/WithTooltip";
 
 import placeholder from "$assets/images/placeholders/payouts.png";
+import { Label } from "$app/components/ui/Label";
 
 const INSTANT_PAYOUT_FEE_PERCENTAGE = 0.03;
 const MINIMUM_INSTANT_PAYOUT_AMOUNT_CENTS = 1000;
@@ -807,7 +808,7 @@ const Payouts = ({
               </p>
 
               <fieldset>
-                <label htmlFor="instant-payout-date">Pay out balance up to</label>
+                <Label htmlFor="instant-payout-date">Pay out balance up to</Label>
                 <div className="input cursor-pointer">
                   <Icon name="calendar-all" />
                   <select

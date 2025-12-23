@@ -17,6 +17,7 @@ import { Button } from "$app/components/Button";
 import { useAppDomain } from "$app/components/DomainSettings";
 import { Icon } from "$app/components/Icons";
 import { useLoggedInUser } from "$app/components/LoggedInUser";
+import { Textarea } from "$app/components/Forms";
 import { Modal } from "$app/components/Modal";
 import { Popover } from "$app/components/Popover";
 import { showAlert } from "$app/components/server-components/Alert";
@@ -374,7 +375,7 @@ const CommentTextarea = ({
         />
       ) : null}
       {loggedInUser || purchase_id ? (
-        <textarea ref={ref} rows={1} placeholder="Write a comment" {...props} />
+        <Textarea ref={ref} rows={1} placeholder="Write a comment" {...props} />
       ) : (
         <div>
           <a href={Routes.login_url({ host: appDomain })}>Log in</a> or{" "}

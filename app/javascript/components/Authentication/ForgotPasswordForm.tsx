@@ -5,8 +5,10 @@ import { assertResponseError } from "$app/utils/request";
 
 import { SocialAuth } from "$app/components/Authentication/SocialAuth";
 import { Button } from "$app/components/Button";
+import { Input } from "$app/components/Input";
 import { Separator } from "$app/components/Separator";
 import { showAlert } from "$app/components/server-components/Alert";
+import { Label } from "$app/components/ui/Label";
 
 type SaveState = { type: "initial" | "submitting" } | { type: "error"; message: string };
 
@@ -42,9 +44,9 @@ export const ForgotPasswordForm = ({ onClose }: { onClose: () => void }) => {
         ) : null}
         <fieldset>
           <legend>
-            <label htmlFor={uid}>Email to send reset instructions to</label>
+            <Label htmlFor={uid}>Email to send reset instructions to</Label>
           </legend>
-          <input id={uid} type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <Input id={uid} type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
         </fieldset>
         <Button color="primary" type="submit" disabled={saveState.type === "submitting"}>
           {saveState.type === "submitting" ? "Sending..." : "Send"}

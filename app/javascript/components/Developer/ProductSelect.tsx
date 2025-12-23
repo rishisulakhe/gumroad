@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Label } from "$app/components/ui/Label";
 
 export type Product = {
   name: string;
@@ -31,7 +32,7 @@ export const ProductSelect = ({
   return (
     <fieldset>
       <legend>
-        <label htmlFor={uid}>Choose your product</label>
+        <Label htmlFor={uid}>Choose your product</Label>
       </legend>
       <select id={uid} value={selectedProductUrl} onChange={dispatchChangeEvent}>
         <optgroup label="Your products">

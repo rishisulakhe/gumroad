@@ -58,6 +58,7 @@ import { RecurrenceId, recurrenceLabels } from "$app/utils/recurringPricing";
 import { AbortError, assertResponseError } from "$app/utils/request";
 
 import { Button, NavigationButton } from "$app/components/Button";
+import { Checkbox } from "$app/components/Checkbox";
 import { useCurrentSeller } from "$app/components/CurrentSeller";
 import { DateInput } from "$app/components/DateInput";
 import { DateRangePicker } from "$app/components/DateRangePicker";
@@ -89,6 +90,7 @@ import { useSortingTableDriver } from "$app/components/useSortingTableDriver";
 import { WithTooltip } from "$app/components/WithTooltip";
 
 import placeholder from "$assets/images/placeholders/customers.png";
+import { Label } from "$app/components/ui/Label";
 
 type Product = { id: string; name: string; variants: { id: string; name: string }[] };
 
@@ -319,7 +321,7 @@ const CustomersPage = ({
                     }}
                   >
                     <fieldset>
-                      <label htmlFor={`${uid}-minimum-amount`}>Paid more than</label>
+                      <Label htmlFor={`${uid}-minimum-amount`}>Paid more than</Label>
                       <PriceInput
                         id={`${uid}-minimum-amount`}
                         currencyCode={currency_type}
@@ -329,7 +331,7 @@ const CustomersPage = ({
                       />
                     </fieldset>
                     <fieldset>
-                      <label htmlFor={`${uid}-maximum-amount`}>Paid less than</label>
+                      <Label htmlFor={`${uid}-maximum-amount`}>Paid less than</Label>
                       <PriceInput
                         id={`${uid}-maximum-amount`}
                         currencyCode={currency_type}
@@ -349,7 +351,7 @@ const CustomersPage = ({
                     }}
                   >
                     <fieldset>
-                      <label htmlFor={`${uid}-after-date`}>After</label>
+                      <Label htmlFor={`${uid}-after-date`}>After</Label>
                       <DateInput
                         id={`${uid}-after-date`}
                         value={createdAfter}
@@ -359,7 +361,7 @@ const CustomersPage = ({
                       <small suppressHydrationWarning>{`00:00  ${timeZoneAbbreviation}`}</small>
                     </fieldset>
                     <fieldset>
-                      <label htmlFor={`${uid}-before-date`}>Before</label>
+                      <Label htmlFor={`${uid}-before-date`}>Before</Label>
                       <DateInput
                         id={`${uid}-before-date`}
                         value={createdBefore}
@@ -372,7 +374,7 @@ const CustomersPage = ({
                 </div>
                 <div>
                   <fieldset>
-                    <label htmlFor={`${uid}-country`}>From</label>
+                    <Label htmlFor={`${uid}-country`}>From</Label>
                     <select
                       id={`${uid}-country`}
                       value={country ?? "Anywhere"}
@@ -391,7 +393,7 @@ const CustomersPage = ({
                 </div>
                 <div>
                   <h4>
-                    <label htmlFor={`${uid}-active-customers-only`}>Show active customers only</label>
+                    <Label htmlFor={`${uid}-active-customers-only`}>Show active customers only</Label>
                   </h4>
                   <Toggle
                     id={`${uid}-active-customers-only`}
@@ -612,7 +614,7 @@ const ProductSelect = ({
   return (
     <fieldset>
       <legend>
-        <label htmlFor={uid}>{label}</label>
+        <Label htmlFor={uid}>{label}</Label>
       </legend>
       <Select
         inputId={uid}
@@ -1366,7 +1368,7 @@ const AddressSection = ({
           <div className="flex flex-col gap-4">
             <fieldset>
               <legend>
-                <label htmlFor={`${uid}-full-name`}>Full name</label>
+                <Label htmlFor={`${uid}-full-name`}>Full name</Label>
               </legend>
               <input
                 id={`${uid}-full-name`}
@@ -1378,7 +1380,7 @@ const AddressSection = ({
             </fieldset>
             <fieldset>
               <legend>
-                <label htmlFor={`${uid}-street-address`}>Street address</label>
+                <Label htmlFor={`${uid}-street-address`}>Street address</Label>
               </legend>
               <input
                 id={`${uid}-street-address`}
@@ -1391,7 +1393,7 @@ const AddressSection = ({
             <div style={{ display: "grid", gridAutoFlow: "column", gridAutoColumns: "1fr", gap: "var(--spacer-2)" }}>
               <fieldset>
                 <legend>
-                  <label htmlFor={`${uid}-city`}>City</label>
+                  <Label htmlFor={`${uid}-city`}>City</Label>
                 </legend>
                 <input
                   id={`${uid}-city`}
@@ -1403,7 +1405,7 @@ const AddressSection = ({
               </fieldset>
               <fieldset>
                 <legend>
-                  <label htmlFor={`${uid}-state`}>State</label>
+                  <Label htmlFor={`${uid}-state`}>State</Label>
                 </legend>
                 <input
                   id={`${uid}-state`}
@@ -1415,7 +1417,7 @@ const AddressSection = ({
               </fieldset>
               <fieldset>
                 <legend>
-                  <label htmlFor={`${uid}-zip-code`}>ZIP code</label>
+                  <Label htmlFor={`${uid}-zip-code`}>ZIP code</Label>
                 </legend>
                 <input
                   id={`${uid}-zip-code`}
@@ -1427,7 +1429,7 @@ const AddressSection = ({
               </fieldset>
             </div>
             <fieldset>
-              <label htmlFor={`${uid}-country`}>Country</label>
+              <Label htmlFor={`${uid}-country`}>Country</Label>
               <select
                 id={`${uid}-country`}
                 value={address.country}
@@ -1617,8 +1619,7 @@ const EmailSection = ({
           <fieldset role="group">
             <label>
               Receives emails
-              <input
-                type="checkbox"
+              <Checkbox
                 checked={canContact}
                 onChange={(evt) => {
                   setIsLoading(true);
@@ -2579,10 +2580,10 @@ const CommissionSection = ({
               ))}
             </Rows>
           ) : null}
-          <label className="button">
+          <Label className="button">
             <input type="file" onChange={handleFileChange} disabled={isLoading} multiple style={{ display: "none" }} />
             <Icon name="paperclip" /> Upload files
-          </label>
+          </Label>
           {commission.status === "in_progress" ? (
             <Button color="primary" disabled={isLoading} onClick={() => void handleCompletion()}>
               Submit and mark as complete

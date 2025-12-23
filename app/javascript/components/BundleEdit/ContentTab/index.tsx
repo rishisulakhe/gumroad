@@ -20,6 +20,7 @@ import { useDebouncedCallback } from "$app/components/useDebouncedCallback";
 import { useOnChange } from "$app/components/useOnChange";
 import { useOnScrollToBottom } from "$app/components/useOnScrollToBottom";
 import { useRunOnce } from "$app/components/useRunOnce";
+import { Label } from "$app/components/ui/Label";
 
 const RESULTS_PER_PAGE = 10;
 export const ContentTab = () => {
@@ -98,7 +99,7 @@ export const ContentTab = () => {
                 }}
               >
                 <h2>Products</h2>
-                <label>
+                <Label>
                   <input
                     type="checkbox"
                     checked={bundle.products.length === productsCount}
@@ -112,7 +113,7 @@ export const ContentTab = () => {
                     }
                   />
                   All products
-                </label>
+                </Label>
               </header>
               {bundle.products.length > 0 ? (
                 <CartItemList aria-label="Bundle products">

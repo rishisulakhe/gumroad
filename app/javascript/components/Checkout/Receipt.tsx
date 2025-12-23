@@ -12,6 +12,8 @@ import { DiscordButton } from "$app/components/DiscordButton";
 import { Icon } from "$app/components/Icons";
 import { useLoggedInUser } from "$app/components/LoggedInUser";
 import { showAlert } from "$app/components/server-components/Alert";
+import { Label } from "$app/components/ui/Label";
+import { Input } from "$app/components/Forms";
 
 export const LineItem = ({
   name,
@@ -219,13 +221,13 @@ export const CreateAccountForm = ({
           </div>
           <fieldset>
             <legend>
-              <label htmlFor={`${uid}email`}>Email</label>
+              <Label htmlFor={`${uid}email`}>Email</Label>
             </legend>
-            <input type="text" readOnly value={createAccountData.email} id={`${uid}email`} />
+            <Input type="text" readOnly value={createAccountData.email} id={`${uid}email`} />
           </fieldset>
           <fieldset>
             <legend>
-              <label htmlFor={`${uid}password`}>Password</label>
+              <Label htmlFor={`${uid}password`}>Password</Label>
             </legend>
             <input
               type="password"

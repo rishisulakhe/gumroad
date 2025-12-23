@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import { Input } from "$app/components/Forms";
+
 export const CustomSummaryInput = ({
   value,
   onChange,
@@ -11,7 +13,7 @@ export const CustomSummaryInput = ({
   return (
     <fieldset>
       <label htmlFor={uid}>Summary</label>
-      <input
+      <Input
         id={uid}
         type="text"
         placeholder="You'll get..."

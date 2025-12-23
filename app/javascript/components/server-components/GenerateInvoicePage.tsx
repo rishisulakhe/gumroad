@@ -7,8 +7,10 @@ import { assertResponseError } from "$app/utils/request";
 import { register } from "$app/utils/serverComponentUtil";
 
 import { Button } from "$app/components/Button";
+import { Input } from "$app/components/Forms";
 import { PoweredByFooter } from "$app/components/PoweredByFooter";
 import { showAlert } from "$app/components/server-components/Alert";
+import { Textarea } from "$app/components/Forms";
 
 type FieldState = { value: string; error?: boolean };
 
@@ -114,7 +116,7 @@ const GenerateInvoicePage = ({
         <div>
           <fieldset className={cx({ danger: fullName.error })}>
             <label htmlFor="full_name">Full name</label>
-            <input
+            <Input
               id="full_name"
               placeholder="Full name"
               type="text"
@@ -127,12 +129,12 @@ const GenerateInvoicePage = ({
               <legend>
                 <label htmlFor="chargeable_vat_id">{form_info.vat_id_label}</label>
               </legend>
-              <input id="chargeable_vat_id" type="text" value={vatId} onChange={(e) => setVatId(e.target.value)} />
+              <Input id="chargeable_vat_id" type="text" value={vatId} onChange={(e) => setVatId(e.target.value)} />
             </fieldset>
           ) : null}
           <fieldset className={cx({ danger: streetAddress.error })}>
             <label htmlFor="street_address">Street address</label>
-            <input
+            <Input
               id="street_address"
               type="text"
               placeholder="Street address"
@@ -143,7 +145,7 @@ const GenerateInvoicePage = ({
           <div style={{ display: "grid", gap: "var(--spacer-2)", gridTemplateColumns: "2fr 1fr 1fr" }}>
             <fieldset className={cx({ danger: city.error })}>
               <label htmlFor="city">City</label>
-              <input
+              <Input
                 id="city"
                 type="text"
                 placeholder="City"
@@ -153,7 +155,7 @@ const GenerateInvoicePage = ({
             </fieldset>
             <fieldset className={cx({ danger: state.error })}>
               <label htmlFor="state">State</label>
-              <input
+              <Input
                 id="state"
                 type="text"
                 placeholder="State"
@@ -163,7 +165,7 @@ const GenerateInvoicePage = ({
             </fieldset>
             <fieldset className={cx({ danger: zipCode.error })}>
               <label htmlFor="zip_code">ZIP code</label>
-              <input
+              <Input
                 id="zip_code"
                 type="text"
                 placeholder="ZIP code"
@@ -187,7 +189,7 @@ const GenerateInvoicePage = ({
             <legend>
               <label htmlFor="additional_notes">Additional notes</label>
             </legend>
-            <textarea
+            <Textarea
               id="additional_notes"
               name="additional_notes"
               placeholder="Enter anything else you'd like to appear on your invoice (Optional)"

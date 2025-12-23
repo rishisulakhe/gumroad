@@ -12,6 +12,7 @@ import { useCurrentSeller } from "$app/components/CurrentSeller";
 import { useDomains } from "$app/components/DomainSettings";
 import { FileRowContent } from "$app/components/FileRowContent";
 import { Icon } from "$app/components/Icons";
+import { Textarea } from "$app/components/Forms";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Row, RowActions, RowContent, RowDetails, Rows } from "$app/components/ui/Rows";
 
@@ -136,7 +137,7 @@ export function ConversationDetail({ conversationSlug, onBack }: { conversationS
 
         <form className="mt-4 flex flex-col gap-2" onSubmit={(e) => void handleSubmit(e)}>
           <label htmlFor="reply">Reply</label>
-          <textarea
+          <Textarea
             className="mb-2 flex-1 rounded-sm border px-3 py-2"
             placeholder="Write a reply"
             id="reply"

@@ -4,6 +4,7 @@ import { createCast } from "ts-safe-cast";
 import { register } from "$app/utils/serverComponentUtil";
 
 import { Button } from "$app/components/Button";
+import { Input } from "$app/components/Input";
 import { Modal } from "$app/components/Modal";
 
 type Props = {
@@ -45,7 +46,7 @@ export const UpdateCountryConfirmationModal = ({ country, balance, open, onClose
                 <label htmlFor="confirmation-input" className="sr-only">
                   Type "I understand" to confirm
                 </label>
-                <input
+                <Input
                   id="confirmation-input"
                   type="text"
                   value={confirmText}

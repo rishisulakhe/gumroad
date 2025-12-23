@@ -12,6 +12,7 @@ import { register } from "$app/utils/serverComponentUtil";
 import { writeQueryParams } from "$app/utils/url";
 
 import { Button } from "$app/components/Button";
+import { Checkbox } from "$app/components/Checkbox";
 import { useDiscoverUrl } from "$app/components/DomainSettings";
 import { Icon } from "$app/components/Icons";
 import { Layout } from "$app/components/Library/Layout";
@@ -477,8 +478,7 @@ const LibraryPage = ({ results, creators, bundles, reviews_page_enabled, followi
                       <legend className="filter-header">Creator</legend>
                       <label>
                         All Creators
-                        <input
-                          type="checkbox"
+                        <Checkbox
                           checked={state.search.creators.length === 0}
                           onClick={() => dispatch({ type: "update-search", search: { creators: [] } })}
                           readOnly
@@ -488,8 +488,7 @@ const LibraryPage = ({ results, creators, bundles, reviews_page_enabled, followi
                         <label key={creator.id}>
                           {creator.name}
                           <span className="shrink-0 text-muted">{`(${creator.count})`}</span>
-                          <input
-                            type="checkbox"
+                          <Checkbox
                             checked={state.search.creators.includes(creator.id)}
                             onClick={() =>
                               dispatch({
@@ -519,8 +518,7 @@ const LibraryPage = ({ results, creators, bundles, reviews_page_enabled, followi
                       <fieldset role="group">
                         <label className="filter-archived">
                           Show archived only
-                          <input
-                            type="checkbox"
+                          <Checkbox
                             checked={state.search.showArchivedOnly}
                             readOnly
                             onClick={() =>

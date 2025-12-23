@@ -9,6 +9,7 @@ import { Modal } from "$app/components/Modal";
 import { PaginationProps } from "$app/components/Pagination";
 import { Review } from "$app/components/Review";
 import { showAlert } from "$app/components/server-components/Alert";
+import { Checkbox } from "$app/components/Forms";
 
 export const TestimonialSelectModal = ({
   isOpen,
@@ -164,7 +165,7 @@ const SelectableReviewCard = ({
   onSelect: () => void;
 }) => (
   <div className="flex gap-4 rounded-xs p-4 outline-[1px] outline-solid">
-    <input type="checkbox" role="checkbox" checked={isSelected} onChange={onSelect} aria-label="Select review" />
+    <Checkbox role="checkbox" checked={isSelected} onChange={onSelect} aria-label="Select review" />
     <div className="w-full">
       <Review review={review} seller={null} canRespond={false} hideResponse />
     </div>

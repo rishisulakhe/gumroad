@@ -6,6 +6,8 @@ import { assertResponseError } from "$app/utils/request";
 import { Button } from "$app/components/Button";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { showAlert } from "$app/components/server-components/Alert";
+import { Label } from "$app/components/ui/Label";
+import { Checkbox } from "$app/components/Forms";
 
 export const ExportSubscribersPopover = ({ closePopover }: { closePopover: () => void }) => {
   const [loading, setLoading] = React.useState(false);
@@ -49,11 +51,11 @@ export const ExportSubscribersPopover = ({ closePopover }: { closePopover: () =>
       <p className="mb-4">This will download a CSV file with one row per subscriber.</p>
 
       <div className="mb-4 flex flex-col gap-2">
-        <label className="font-medium">
-          <input type="checkbox" checked={allSelected} onChange={selectAll} />
+        <Label className="font-medium">
+          <Checkbox checked={allSelected} onChange={selectAll} />
           All Subscribers
-        </label>
-        <label>
+        </Label>
+        <Label>
           <input
             type="checkbox"
             checked={followers}
@@ -62,8 +64,8 @@ export const ExportSubscribersPopover = ({ closePopover }: { closePopover: () =>
             }}
           />
           Followers
-        </label>
-        <label>
+        </Label>
+        <Label>
           <input
             type="checkbox"
             checked={customers}
@@ -72,8 +74,8 @@ export const ExportSubscribersPopover = ({ closePopover }: { closePopover: () =>
             }}
           />
           Customers
-        </label>
-        <label>
+        </Label>
+        <Label>
           <input
             type="checkbox"
             checked={affiliates}
@@ -82,7 +84,7 @@ export const ExportSubscribersPopover = ({ closePopover }: { closePopover: () =>
             }}
           />
           Affiliates
-        </label>
+        </Label>
       </div>
       <div className="grid">
         <Button disabled={noOptionSelected || loading} onClick={() => void handleDownload()}>

@@ -2,6 +2,7 @@ import * as React from "react";
 
 import { useCurrentSeller } from "$app/components/CurrentSeller";
 import { ProfileSection } from "$app/components/ProductEdit/state";
+import { Switch } from "$app/components/Forms";
 
 export const ProfileSectionsEditor = ({
   sectionIds,
@@ -37,9 +38,7 @@ export const ProfileSectionsEditor = ({
             const items = section.product_names.slice(0, 2).join(", ");
             return (
               <label key={section.id}>
-                <input
-                  type="checkbox"
-                  role="switch"
+                <Switch
                   checked={sectionIds.includes(section.id)}
                   onChange={(evt) =>
                     onChange(

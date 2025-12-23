@@ -6,6 +6,7 @@ import { cast } from "ts-safe-cast";
 import Errors from "$app/components/Admin/Form/Errors";
 import { Popover } from "$app/components/Popover";
 import { WithTooltip } from "$app/components/WithTooltip";
+import { Label } from "$app/components/ui/Label";
 
 type Errors = {
   authenticity_token?: string[];
@@ -65,7 +66,7 @@ const NewSalesReportPopover = () => {
       <div className="grid w-96 max-w-full gap-3">
         <form onSubmit={handleSubmit} style={{ display: "contents" }}>
           <div className="grid grid-rows-[auto_1fr] gap-3">
-            <label htmlFor="country_code">Country</label>
+            <Label htmlFor="country_code">Country</Label>
             <select
               name="sales_report[country_code]"
               id="country_code"
@@ -87,7 +88,7 @@ const NewSalesReportPopover = () => {
 
           <div className="grid grid-cols-2 gap-3">
             <div className="grid grid-rows-[auto_1fr] gap-3">
-              <label htmlFor="start_date">Start Date</label>
+              <Label htmlFor="start_date">Start Date</Label>
               <input
                 name="sales_report[start_date]"
                 id="start_date"
@@ -102,7 +103,7 @@ const NewSalesReportPopover = () => {
             </div>
 
             <div className="grid grid-rows-[1fr_auto] gap-3">
-              <label htmlFor="end_date">End Date</label>
+              <Label htmlFor="end_date">End Date</Label>
               <input
                 name="sales_report[end_date]"
                 id="end_date"
@@ -118,7 +119,7 @@ const NewSalesReportPopover = () => {
           </div>
 
           <div className="grid grid-rows-[auto_1fr] gap-3">
-            <label htmlFor="sales_type">Sale Type</label>
+            <Label htmlFor="sales_type">Sale Type</Label>
             <select
               name="sales_report[sales_type]"
               id="sales_type"

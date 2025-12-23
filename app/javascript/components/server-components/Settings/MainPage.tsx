@@ -8,6 +8,7 @@ import { ResponseError, request, assertResponseError } from "$app/utils/request"
 import { register } from "$app/utils/serverComponentUtil";
 
 import { Button } from "$app/components/Button";
+import { Input } from "$app/components/Forms";
 import { Modal } from "$app/components/Modal";
 import { NumberInput } from "$app/components/NumberInput";
 import { showAlert } from "$app/components/server-components/Alert";
@@ -15,6 +16,7 @@ import { ProductLevelSupportEmailsForm } from "$app/components/server-components
 import { ToggleSettingRow } from "$app/components/SettingRow";
 import { Layout } from "$app/components/Settings/Layout";
 import { TagInput } from "$app/components/TagInput";
+import { Textarea } from "$app/components/Forms";
 import { Toggle } from "$app/components/Toggle";
 import { Pill } from "$app/components/ui/Pill";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
@@ -151,7 +153,7 @@ const MainPage = (props: Props) => {
             <legend>
               <label htmlFor={`${uid}-email`}>Email</label>
             </legend>
-            <input
+            <Input
               type="email"
               id={`${uid}-email`}
               value={userSettings.email}
@@ -304,7 +306,7 @@ const MainPage = (props: Props) => {
             <legend>
               <label htmlFor={`${uid}-support-email`}>Email</label>
             </legend>
-            <input
+            <Input
               type="email"
               id={`${uid}-support-email`}
               value={userSettings.support_email}
@@ -375,7 +377,7 @@ const MainPage = (props: Props) => {
                     <legend>
                       <label htmlFor="seller-refund-policy-fine-print">Fine print</label>
                     </legend>
-                    <textarea
+                    <Textarea
                       id="seller-refund-policy-fine-print"
                       maxLength={3000}
                       rows={10}

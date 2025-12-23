@@ -3,6 +3,7 @@ import * as React from "react";
 import { cast } from "ts-safe-cast";
 
 import { TextInput } from "$app/components/Download/CustomField/TextInput";
+import { Textarea } from "$app/components/Forms";
 
 export const TextInputNodeView = ({ editor, node, updateAttributes }: NodeViewProps) => {
   const label = cast<string | null>(node.attrs.label);
@@ -34,7 +35,7 @@ export const TextInputNodeView = ({ editor, node, updateAttributes }: NodeViewPr
                 borderRadius: 0,
               }}
             />
-            {type === "shortAnswer" ? <input {...sharedProps} /> : <textarea {...sharedProps} />}
+            {type === "shortAnswer" ? <input {...sharedProps} /> : <Textarea {...sharedProps} />}
           </>
         ) : (
           <TextInput customFieldId={customFieldId ?? ""} type={type} label={label ?? ""} />

@@ -5,6 +5,7 @@ import { register } from "$app/utils/serverComponentUtil";
 
 import { Form } from "$app/components/server-components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
+import { Textarea } from "$app/components/Forms";
 
 export const AdminFlagForFraudForm = ({ user_id }: { user_id: number }) => (
   <Form
@@ -16,7 +17,7 @@ export const AdminFlagForFraudForm = ({ user_id }: { user_id: number }) => (
     {(isLoading) => (
       <fieldset>
         <div className="input-with-button" style={{ alignItems: "start" }}>
-          <textarea name="flag_for_fraud[flag_note]" rows={3} placeholder="Add flag note (optional)" />
+          <Textarea name="flag_for_fraud[flag_note]" rows={3} placeholder="Add flag note (optional)" />
           <button type="submit" className="button" disabled={isLoading}>
             {isLoading ? "Submitting..." : "Submit"}
           </button>

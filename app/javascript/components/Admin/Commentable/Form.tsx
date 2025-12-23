@@ -6,6 +6,7 @@ import { request } from "$app/utils/request";
 
 import type { CommentProps } from "$app/components/Admin/Commentable/Comment";
 import { showAlert } from "$app/components/server-components/Alert";
+import { Textarea } from "$app/components/Forms";
 
 type AdminCommentableFormProps = {
   endpoint: string;
@@ -65,7 +66,7 @@ const AdminCommentableForm = ({ endpoint, onCommentAdded, commentableType }: Adm
       <input type="hidden" name="authenticity_token" value={authenticity_token} />
       <fieldset>
         <div className="flex items-center gap-2">
-          <textarea
+          <Textarea
             name="comment[content]"
             className="flex-1"
             rows={1}

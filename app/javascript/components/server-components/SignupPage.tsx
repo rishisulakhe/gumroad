@@ -9,6 +9,7 @@ import { register } from "$app/utils/serverComponentUtil";
 import { Layout } from "$app/components/Authentication/Layout";
 import { SocialAuth } from "$app/components/Authentication/SocialAuth";
 import { Button } from "$app/components/Button";
+import { Input } from "$app/components/Input";
 import { PasswordInput } from "$app/components/PasswordInput";
 import { Separator } from "$app/components/Separator";
 import { useOriginalLocation } from "$app/components/useOriginalLocation";
@@ -91,7 +92,7 @@ export const SignupPage = ({
             <legend>
               <label htmlFor={`${uid}-email`}>Email</label>
             </legend>
-            <input id={`${uid}-email`} type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+            <Input id={`${uid}-email`} type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
           </fieldset>
           <fieldset>
             <legend>

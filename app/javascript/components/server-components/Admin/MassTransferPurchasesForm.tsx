@@ -5,6 +5,7 @@ import { register } from "$app/utils/serverComponentUtil";
 
 import { Form } from "$app/components/server-components/Admin/Form";
 import { showAlert } from "$app/components/server-components/Alert";
+import { Input } from "$app/components/Forms";
 
 export const MassTransferPurchasesForm = ({ user_id }: { user_id: number }) => (
   <Form
@@ -16,7 +17,7 @@ export const MassTransferPurchasesForm = ({ user_id }: { user_id: number }) => (
     {(isLoading) => (
       <fieldset>
         <div style={{ display: "grid", gap: "var(--spacer-3)", gridTemplateColumns: "1fr auto" }}>
-          <input type="email" name="mass_transfer_purchases[new_email]" placeholder="New email" required />
+          <Input type="email" name="mass_transfer_purchases[new_email]" placeholder="New email" required />
           <button type="submit" className="button" disabled={isLoading}>
             {isLoading ? "Transferring..." : "Transfer"}
           </button>
