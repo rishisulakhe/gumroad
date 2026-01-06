@@ -273,6 +273,7 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
   }, 500);
 
   const [messageEditor, setMessageEditor] = React.useState<Editor | null>(null);
+  const [initialMessageValue] = React.useState(() => parseInitialValue(installment?.message ?? ""));
   React.useEffect(() => {
     if (form.data.installment.message !== "" && messageEditor?.isEmpty) {
       queueMicrotask(() => {
@@ -1165,7 +1166,7 @@ export const EmailForm = ({ context, installment }: EmailFormProps) => {
                     className="textarea"
                     ariaLabel="Email message"
                     placeholder="Write a personalized message..."
-                    initialValue={parseInitialValue(form.data.installment.message)}
+                    initialValue={initialMessageValue}
                     onChange={handleMessageChange}
                     onCreate={setMessageEditor}
                     extensions={[UpsellCard]}
