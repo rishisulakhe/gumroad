@@ -330,6 +330,7 @@ const OverlayMenu = ({
         open={menuOpen}
         onOpenChange={setMenuOpen}
         modal
+        showCloseButton={true}
         className="right-auto w-80 max-w-80 border-l-0 p-0 md:left-0 md:border-r"
       >
         <ItemsList

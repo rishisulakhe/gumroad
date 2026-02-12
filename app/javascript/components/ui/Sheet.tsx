@@ -9,11 +9,20 @@ export const Sheet = ({
   children,
   className,
   modal = false,
+  showCloseButton = false,
   ...props
-}: { className?: string; modal?: boolean } & React.ComponentProps<typeof Dialog.Root>) => (
+}: { className?: string; modal?: boolean; showCloseButton?: boolean  } & React.ComponentProps<typeof Dialog.Root>) => (
   <Dialog.Root {...props} modal={modal}>
     <Dialog.Portal>
-      {modal ? <Dialog.Overlay className="fixed inset-0 z-40 bg-black/80" /> : null}
+      {modal ? (
+        <Dialog.Overlay className="fixed inset-0 z-40 bg-black/80">
+          {showCloseButton && (
+          <Dialog.Close className="absolute right-4 top-4 cursor-pointer text-white bg-transparent" aria-label="Close">
+            <Icon name="x" className="text-2xl bg-white" />
+          </Dialog.Close>
+          )}
+        </Dialog.Overlay>
+      ) : null}
       <Dialog.Content
         className={classNames(
           "bg-filled fixed inset-0 z-40 flex flex-col gap-4 overflow-auto border-border p-6 md:left-[unset] md:w-[40vw] md:border-l",
